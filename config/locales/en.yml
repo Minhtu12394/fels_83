@@ -20,4 +20,13 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  logo: "E-learning System"
+  learn_more: "Learn more"
+  hello_world: "Hello, world!"
+  help: "Help"
+  contact: "Contact"
+  about: "About"
+  toggle_navigation: "Toggle navigation"
+  home: "Home"
+  copyright: "Copyright © 2015"
+  base_title: "E-learning System 2015"
