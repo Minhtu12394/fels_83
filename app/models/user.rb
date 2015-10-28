@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  include Rails.application.routes.url_helpers
+
   attr_accessor :remmember_token, :activation_token, :reset_token
 
   has_many :activities, dependent: :destroy
@@ -87,6 +89,10 @@ class User < ActiveRecord::Base
 
   def following? other_user
     following.include? other_user
+  end
+
+  def base_resource
+    "#{self.name},#{user_path self}"
   end
 
   private

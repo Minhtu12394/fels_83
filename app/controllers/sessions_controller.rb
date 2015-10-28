@@ -9,6 +9,7 @@ class SessionsController < ApplicationController
       if user.activated?
         log_in user
         session_params[:remember_me] == "1" ? remember(user) : forget(user)
+        make_activity t(:login)
       else
         message = t "message.account_not_active"
         message += t "message.check_account_to_active"
@@ -22,6 +23,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    make_activity t(:logout)
     log_out if logged_in?
     redirect_to root_url
   end

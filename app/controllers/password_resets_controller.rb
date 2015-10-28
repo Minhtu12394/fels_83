@@ -11,6 +11,9 @@ class PasswordResetsController < ApplicationController
       @user.create_reset_digest
       @user.send_password_reset_email
       flash[:info] = t "message.email_have_send"
+
+      make_activity t(:make_reset_password), nil, @user
+
       redirect_to root_url
     else
       flash.now[:danger] = t "message.email_not_found"
@@ -29,6 +32,9 @@ class PasswordResetsController < ApplicationController
       render "edit"
     elsif current_user.update_attributes user_params
       flash[:success] = t "message.password_has_been_reset"
+
+      make_activity t(:finish_reset_password)
+
       redirect_to current_user
     else
       render "edit"
