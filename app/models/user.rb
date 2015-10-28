@@ -57,7 +57,36 @@ class User < ActiveRecord::Base
   def send_activation_email
     user_hash = {name: self.name, email: self.email,
       activation_token: self.activation_token}
-    UserMailer.account_activation(user_hash).deliver_later
+    UserMailer.account_activation(user_hash).deliver_now
+  end
+
+  def create_reset_digest
+    self.reset_token = User.new_token
+    self.update_columns reset_digest: User.digest(reset_token),
+      reset_send_at: Time.zone.now
+
+  end
+
+  def send_password_reset_email
+    user_hash = {name: self.name, email: self.email,
+      reset_token: self.reset_token}
+    UserMailer.password_reset(user_hash).deliver_now
+  end
+
+  def password_reset_expired?
+    self.reset_send_at < 2.hours.ago
+  end
+
+  def follow other_user
+    active_relationships.create followed_id: other_user.id
+  end
+
+  def unfollow other_user
+    active_relationships.find_by(followed_id: other_user.id).destroy
+  end
+
+  def following? other_user
+    following.include? other_user
   end
 
   private

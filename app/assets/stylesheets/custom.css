@@ -1,3 +1,23 @@
 #back_to_top {
   position: fixed;right: 20px; bottom: 10px; display: none
 }
+
+/* form */
+#error_explanation {
+  color: red;
+  ul {
+    color: red;
+    margin: 0 0 30px 0;
+  }
+}
+
+.field_with_errors {
+  @extend .has-error;
+  .form-control {
+    color: $state-danger-text;
+  }
+}
+
+#top_nav {
+  border-radius:0px;
+}
