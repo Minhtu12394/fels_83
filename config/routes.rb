@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   resources :account_activations, only: [:edit]
   resources :categories, only: [:index, :show]
+  resources :words, only: [:index]
   resources :users do
     resources :followings, only: [:index]
     resources :followers, only: [:index]
