@@ -18,5 +18,6 @@ Rails.application.routes.draw do
     resources :followers, only: [:index]
   end
 
+  resources :password_resets, only: [:new, :create, :edit, :update]
   resources :relationships, only: [:create, :destroy]
 end

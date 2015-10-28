@@ -45,6 +45,7 @@ class UsersController < ApplicationController
 
   def find_user
     @user = User.find params[:id] if params[:id]
+  end
 
   def correct_user
     @user = User.find params[:id]
