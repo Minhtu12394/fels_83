@@ -10,7 +10,8 @@
     <%= render "answer_fields", f: builder %>
   <% end %>
   <p>
-    <%= link_to_add_fields raw("<span class='glyphicon glyphicon-plus-sign'></span> #{t :add_answer}"), f, :answers %>
+    <%= link_to_add_fields raw("<span class='glyphicon glyphicon-plus-sign'></span> #{t :add_answer}"),
+      f, :answers %>
   </p>
   <br/>
   <%= f.submit yield(:button_text), class: "btn btn-primary" %>

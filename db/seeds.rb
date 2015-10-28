@@ -34,11 +34,11 @@ followers.each {|u| u.follow user}
   40.times do
     word = cate.words.build content: Faker::Lorem.word
     word.answers = [
-      Answer.new content: Faker::Lorem.word, is_correct: true,
-      Answer.new content: Faker::Lorem.word, is_correct: false,
-      Answer.new content: Faker::Lorem.word, is_correct: false,
-      Answer.new content: Faker::Lorem.word, is_correct: false
-    ]
+      Answer.new(content: Faker::Lorem.word, is_correct: true),
+      Answer.new(content: Faker::Lorem.word, is_correct: false),
+      Answer.new(content: Faker::Lorem.word, is_correct: false),
+      Answer.new(content: Faker::Lorem.word, is_correct: false)
+    ].shuffle
     word.save!
   end
 end

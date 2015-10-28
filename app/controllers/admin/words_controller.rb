@@ -5,7 +5,6 @@ class Admin::WordsController < ApplicationController
   end
 
   def create
-    byebug
     @word = Word.new word_params
     if @word.save
       flash[:success] = t "message.create_success"
