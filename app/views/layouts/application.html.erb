@@ -11,11 +11,14 @@
   <%= render "layouts/header" %>
   <div class="container">
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-3">
+        <%= render "shared/menu_learn" if logged_in? %>
+      </div>
+      <div class="col-md-9">
         <%= render "shared/messages" %>
+        <%= yield %>
       </div>
     </div>
-    <%= yield %>
   </div>
   <%= render "layouts/footer" %>
 </body>
