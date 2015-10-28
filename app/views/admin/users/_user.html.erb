@@ -1,5 +1,5 @@
 <div class="list-group-item">
-  <%= link_to user do %>
+  <%= link_to [:admin, user] do %>
     <%= gravatar_for user, size: 30 %>
     <%= user.name %>
   <% end %>
