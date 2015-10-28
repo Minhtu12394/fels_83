@@ -4,5 +4,5 @@ class Answer < ActiveRecord::Base
 
   validates :content, presence: true, length: {maximum: 50}
 
-  scope :correct, ->{where(is_correct: true)}
+  scope :correct, ->{where is_correct: true}
 end

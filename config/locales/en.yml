@@ -23,6 +23,7 @@ en:
   save_change: "Save changes"
   update_status: "Update status"
   update_word: "Update word"
+  update: "Update"
   post: "Post"
   invalid_activation_link: "Invalid activation link"
   account_activation: "Account activation"
