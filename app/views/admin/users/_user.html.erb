@@ -3,4 +3,9 @@
     <%= gravatar_for user, size: 30 %>
     <%= user.name %>
   <% end %>
+  <%= link_to admin_user_path(user), method: :delete,
+    class: "pull-right btn btn-danger btn-xs",
+    data: {confirm: t(:you_sure)} do %>
+    <span class="glyphicon glyphicon-remove"></span> <%= t :delete %>
+  <% end %>
 </div>
