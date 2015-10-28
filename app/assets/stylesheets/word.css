@@ -1,0 +1,7 @@
+.delete-answer:hover {
+  cursor: pointer;
+}
+
+#new_word .fields{
+	margin-bottom: 5px;
+}

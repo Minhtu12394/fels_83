@@ -1,0 +1,10 @@
+<div class="input-group fields">
+  <span class="input-group-addon">
+    <%= f.hidden_field :is_correct %>
+    <input type="radio" class="answer_field" name="answer" onclick="make_correct_field(this)">
+  </span>
+  <%= f.text_field :content, class: "form-control" %>
+  <span class="input-group-addon">
+    <%= link_to_remove_fields raw("<span class='glyphicon glyphicon-remove'></span>"), f %>
+  </span>
+</div>

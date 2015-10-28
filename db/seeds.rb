@@ -33,10 +33,12 @@ followers.each {|u| u.follow user}
 
   40.times do
     word = cate.words.build content: Faker::Lorem.word
-    word.answers.build content: Faker::Lorem.word, is_correct: true
-    word.answers.build content: Faker::Lorem.word, is_correct: false
-    word.answers.build content: Faker::Lorem.word, is_correct: false
-    word.answers.build content: Faker::Lorem.word, is_correct: false
+    word.answers = [
+      Answer.new content: Faker::Lorem.word, is_correct: true,
+      Answer.new content: Faker::Lorem.word, is_correct: false,
+      Answer.new content: Faker::Lorem.word, is_correct: false,
+      Answer.new content: Faker::Lorem.word, is_correct: false
+    ]
     word.save!
   end
 end
