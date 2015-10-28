@@ -1,0 +1,14 @@
+<h2><%= @category.name %></h2>
+<p><%= @category.description %></p>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= t :words %></h3>
+  </div>
+  <% if @words.any? %>
+    <%= render @words %>
+    <div class="text-center">
+      <%= will_paginate @words %>
+    </div>
+  <% end %>
+</div>

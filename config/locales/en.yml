@@ -47,6 +47,9 @@ en:
   you_sure: "You sure?"
   delete: "Delete"
   create_category: "Create category"
+  edit_user: "Edit user"
+  create_word: "Create word"
+  new_word: "New word"
   message:
     account_activated: "Account activated!"
     create_success: "Create success"
