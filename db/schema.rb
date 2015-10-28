@@ -41,12 +41,11 @@ ActiveRecord::Schema.define(version: 20151027030612) do
   end
 
   create_table "lessons", force: :cascade do |t|
-    t.string   "name",        limit: 255
-    t.boolean  "learned",                 default: false
+    t.boolean  "learned",               default: false
     t.integer  "category_id", limit: 4
     t.integer  "user_id",     limit: 4
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
   end
 
   add_index "lessons", ["category_id"], name: "index_lessons_on_category_id", using: :btree

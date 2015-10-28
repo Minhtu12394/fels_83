@@ -4,8 +4,9 @@
 <div class="row">
   <div class="col-md-12">
     <div class="pull-right">
-      <%= link_to new_category_word_path(@category), class: "btn btn-primary" do %>
-        <span class="glyphicon glyphicon-plus-sign"></span> <%= t :create_new %>
+      <%= link_to category_lessons_path(@category), method: :post,
+        class: "btn btn-primary" do %>
+        <span class="glyphicon glyphicon-play"></span> <%= t :start_new_lesson %>
       <% end %>
     </div>
   </div>
@@ -14,12 +15,12 @@
 
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title"><%= t :words %></h3>
+    <h3 class="panel-title"><%= t :lessons %></h3>
   </div>
-  <% if @words.any? %>
-    <%= render @words %>
+  <% if @lessons.any? %>
+    <%= render @lessons %>
     <div class="text-center">
-      <%= will_paginate @words %>
+      <%= will_paginate @lessons %>
     </div>
   <% end %>
 </div>

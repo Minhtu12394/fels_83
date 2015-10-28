@@ -8,4 +8,8 @@ module LessonsHelper
       "danger"
     end
   end
+
+  def rate_result_lesson lesson
+    "#{[lesson.answers.correct.size, lesson.answers.size].join("/")} #{t("words")}"
+  end
 end
