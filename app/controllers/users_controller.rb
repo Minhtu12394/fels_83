@@ -3,7 +3,8 @@ class UsersController < ApplicationController
   before_action :find_user, only: [:show, :edit, :update]
 
   def index
-    @users = User.activated.paginate page: params[:page], per_page: 6
+    @users = User.activated.order(created_at: :desc)
+      .paginate page: params[:page], per_page: 6
   end
 
   def new

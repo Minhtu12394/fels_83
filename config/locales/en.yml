@@ -46,8 +46,10 @@ en:
   admin_managers: "Admin managers"
   you_sure: "You sure?"
   delete: "Delete"
+  create_category: "Create category"
   message:
     account_activated: "Account activated!"
+    create_success: "Create success"
     invalid_login: "Invalid email/password combination"
     account_not_active: "Account not activated."
     check_account_to_active: "Check your email for the activation link."
