@@ -30,3 +30,19 @@ en:
   home: "Home"
   copyright: "Copyright © 2015"
   base_title: "E-learning System 2015"
+  sign_up_now: "Sign up now!"
+  remember_me_on_this_computer: "Remember me on this computer"
+  forgot_password: "forgot password"
+  login: "Login"
+  invalid_login: "Invalid email/password combination"
+  message:
+    account_not_active: "Account not activated."
+    check_account_to_active: "Check your email for the activation link."
+    please_login: "Please login."
+    a_answer_correct: "Must be a answer correct"
+  are_you_new_user: "New user"
+  helpers:
+    label:
+      email: "Email"
+      password: "Password"
+
