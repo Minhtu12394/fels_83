@@ -43,6 +43,9 @@ en:
   words: "Words"
   features: "Features"
   word_list: "Word list"
+  admin_managers: "Admin managers"
+  you_sure: "You sure?"
+  delete: "Delete"
   message:
     account_activated: "Account activated!"
     invalid_login: "Invalid email/password combination"
