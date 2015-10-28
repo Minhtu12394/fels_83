@@ -31,6 +31,9 @@ en:
   activate: "Activate"
   reset_password: "Reset password"
   change_avatar: "Change avatar"
+  must_be_a_answer_correct: "Must be a answer correct"
+  follow: "Follow"
+  unfollow: "Unfollow"
   message:
     account_activated: "Account activated!"
     invalid_login: "Invalid email/password combination"

@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20151027030612) do
 
   create_table "answers", force: :cascade do |t|
     t.string   "content",    limit: 255
-    t.boolean  "is_correct", limit: 1
+    t.boolean  "is_correct"
     t.integer  "word_id",    limit: 4
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
@@ -75,11 +75,11 @@ ActiveRecord::Schema.define(version: 20151027030612) do
   create_table "users", force: :cascade do |t|
     t.string   "name",              limit: 255
     t.string   "email",             limit: 255
-    t.boolean  "admin",             limit: 1,   default: false
+    t.boolean  "admin",                         default: false
     t.string   "password_digest",   limit: 255
     t.string   "remember_digest",   limit: 255
     t.string   "activation_digest", limit: 255
-    t.boolean  "activated",         limit: 1,   default: false
+    t.boolean  "activated",                     default: false
     t.datetime "activated_at"
     t.string   "reset_digest",      limit: 255
     t.datetime "reset_send_at"
