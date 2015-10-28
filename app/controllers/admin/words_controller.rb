@@ -30,6 +30,13 @@ class Admin::WordsController < ApplicationController
     end
   end
 
+  def destroy
+    word = Word.find params[:id]
+    word.destroy
+    flash[:success] = t "message.delete_success"
+    redirect_to [:admin, word.category]
+  end
+
   private
   def word_params
     params.require(:word).permit :content, :category_id,

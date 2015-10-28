@@ -7,11 +7,17 @@
       <%= word.content %>
     </div>
     <div class="col-md-4 text-right">
-      <%= link_to [:edit, :admin, word.category, word], class: "btn btn-info btn-xs" do %>
+      <%= link_to [:edit, :admin, word.category, word],
+        class: "btn btn-info btn-xs" do %>
         <span class="glyphicon glyphicon-edit"></span>
         <%= t :edit %>
+      <% end %>
+      <%= link_to [:admin, word.category, word],
+        class: "btn btn-danger btn-xs", data: {confirm: t(:you_sure)},
+          method: :delete do %>
+        <span class="glyphicon glyphicon-remove"></span>
+        <%= t :delete %>
       <% end %>
     </div>
   </div>
 </div>
-
