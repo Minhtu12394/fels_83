@@ -7,10 +7,12 @@ class User < ActiveRecord::Base
   has_many :active_relationships, class_name: "Relationship",
     foreign_key: "follower_id", dependent: :destroy
   has_many :passive_relationships, class_name: "Relationship",
-    foreign_key: "following_id", dependent: :destroy
+    foreign_key: "followed_id", dependent: :destroy
 
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
+
+  scope :activated, ->{where activated: true}
 
   validates :name, presence: true, length: {maximum: 50}
 
@@ -57,7 +59,35 @@ class User < ActiveRecord::Base
   def send_activation_email
     user_hash = {name: self.name, email: self.email,
       activation_token: self.activation_token}
-    UserMailer.account_activation(user_hash).deliver_later
+    UserMailer.account_activation(user_hash).deliver_now
+  end
+
+  def create_reset_digest
+    self.reset_token = User.new_token
+    self.update_columns reset_digest: User.digest(reset_token),
+      reset_send_at: Time.zone.now
+  end
+
+  def send_password_reset_email
+    user_hash = {name: self.name, email: self.email,
+      reset_token: self.reset_token}
+    UserMailer.password_reset(user_hash).deliver_now
+  end
+
+  def password_reset_expired?
+    self.reset_send_at < 2.hours.ago
+  end
+
+  def follow other_user
+    active_relationships.create followed_id: other_user.id
+  end
+
+  def unfollow other_user
+    active_relationships.find_by(followed_id: other_user.id).destroy
+  end
+
+  def following? other_user
+    following.include? other_user
   end
 
   private
