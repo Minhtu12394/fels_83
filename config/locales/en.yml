@@ -21,8 +21,6 @@ en:
   profile: "Profile"
   edit_profile: "Edit Profile"
   save_change: "Save changes"
-  following: "following"
-  followers: "followers"
   update_status: "Update status"
   post: "Post"
   invalid_activation_link: "Invalid activation link"
@@ -34,6 +32,10 @@ en:
   must_be_a_answer_correct: "Must be a answer correct"
   follow: "Follow"
   unfollow: "Unfollow"
+  update_password: "Update password"
+  confirmation: "Confirmation"
+  forgot_password: "Forgot password"
+  submit: "Submit"
   message:
     account_activated: "Account activated!"
     invalid_login: "Invalid email/password combination"
@@ -45,6 +47,11 @@ en:
     user_deleted: "User deleted"
     please_activate_account: "Please check your email to activate your account"
     profile_updated: "Profile updated"
+    password_has_been_reset: "Password has been reset."
+    email_not_found: "Email address not found"
+    email_have_send: "Email sent with password reset instructions"
+    password_reset_has_expired: "Password reset has expired."
+    cant_be_empty: "Can't be empty"
   are_you_new_user: "New user"
   helpers:
     label:
