@@ -7,6 +7,6 @@
   Welcome to the Sample App! Click on the link below to activate your account:
 </p>
 
-<%= link_to "Activate",
+<%= link_to t(:activate),
   edit_account_activation_url(@user_hash[:activation_token],
   email: @user_hash[:email]), class: "btn btn-primary" %>
