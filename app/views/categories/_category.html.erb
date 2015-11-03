@@ -1,0 +1,13 @@
+<div class="list-group-item">
+  <div class="row">
+    <div class="col-md-3">
+      <b><%= category.name[0..20] %></b>
+    </div>
+    <div class="col-md-6"><%= category.description[0..140] %></div>
+    <div class="col-md-3">
+      <%= link_to category, class: "btn btn-info" do %>
+      <span class="glyphicon glyphicon-eye-open"></span> <%= t :details %>
+      <% end %>
+    </div>
+  </div>
+</div>

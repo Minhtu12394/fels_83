@@ -36,6 +36,12 @@ en:
   confirmation: "Confirmation"
   forgot_password: "Forgot password"
   submit: "Submit"
+  categories: "Categories"
+  details: "Details"
+  start: "Start"
+  create_new: "Create new"
+  words: "Words"
+  features: "Features"
   message:
     account_activated: "Account activated!"
     invalid_login: "Invalid email/password combination"
