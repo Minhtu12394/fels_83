@@ -1,0 +1,13 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= t :categories %></h3>
+  </div>
+  <% if @categories.any? %>
+    <div class="list-group">
+      <%= render @categories %>
+    </div>
+  <div class="text-center">
+    <%= will_paginate %>
+  </div>
+<% end %>
+</div>
