@@ -42,6 +42,7 @@ en:
   create_new: "Create new"
   words: "Words"
   features: "Features"
+  word_list: "Word list"
   message:
     account_activated: "Account activated!"
     invalid_login: "Invalid email/password combination"
