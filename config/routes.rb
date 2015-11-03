@@ -22,4 +22,9 @@ Rails.application.routes.draw do
 
   resources :password_resets, only: [:new, :create, :edit, :update]
   resources :relationships, only: [:create, :destroy]
+
+  namespace :admin do
+    root "users#index"
+    resources :users
+  end
 end
