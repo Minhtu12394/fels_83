@@ -1,15 +1,3 @@
 <% provide :title, @user.name %>
 <% provide :panel_title, t("update_status") %>
 <% provide :button_text, t("post") %>
-
-<div class="row">
-  <aside class="col-md-3">
-    <section class="user_info">
-      <%= render "shared/user_info", user: @user %>
-    </section>
-  </aside>
-  <div class="col-md-6">
-  </div>
-  <aside class="col-md-3">
-  </aside>
-</div>

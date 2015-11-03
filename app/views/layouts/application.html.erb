@@ -9,15 +9,18 @@
 </head>
 <body>
   <%= render "layouts/header" %>
-  <div class="container">
+  <div class="container-fluid">
     <div class="row">
       <div class="col-md-3">
+        <%= render "shared/user_info", user: current_user %>
+        <%= yield :side_bar %>
         <%= render "shared/menu_learn" if logged_in? %>
       </div>
-      <div class="col-md-9">
+      <div class="col-md-6">
         <%= render "shared/messages" %>
         <%= yield %>
       </div>
+      <div class="col-md-3"></div>
     </div>
   </div>
   <%= render "layouts/footer" %>
