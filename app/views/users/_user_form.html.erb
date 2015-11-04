@@ -1,4 +1,5 @@
 <%= form_for @user do |f| %>
+  <%= render "errors_message_by", object: @user %>
   <div class="form-group">
     <%= f.label :name %>
     <%= f.text_field :name, class: "form-control" %>
