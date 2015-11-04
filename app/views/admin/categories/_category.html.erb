@@ -10,5 +10,11 @@
         <%= category.description %>
       </p>
     </div>
+    <div class="col-md-3">
+      <%= link_to admin_category_path(category), method: :delete,
+        class: "btn btn-danger btn-xs", data: {confirm: t(:you_sure)} do %>
+        <span class="glyphicon glyphicon-remove"></span> <%= t :delete %>
+      <% end %>
+    </div>
   </div>
 </div>
