@@ -11,6 +11,12 @@ class Admin::CategoriesController < ApplicationController
     redirect_to admin_categories_path
   end
 
+  def show
+    @category = Category.find params[:id]
+    @words = @category.words.order(created_at: :desc)
+      .paginate page: params[:page], per_page: 4
+  end
+
   def new
     @category = Category.new
   end
