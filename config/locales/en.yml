@@ -55,6 +55,7 @@ en:
   add_answer: "Add answer"
   edit_word: "Edit word"
   message:
+    delete_success: "Delete success"
     account_activated: "Account activated!"
     create_success: "Create success"
     invalid_login: "Invalid email/password combination"
