@@ -22,6 +22,7 @@ en:
   edit_profile: "Edit Profile"
   save_change: "Save changes"
   update_status: "Update status"
+  update_word: "Update word"
   post: "Post"
   invalid_activation_link: "Invalid activation link"
   account_activation: "Account activation"
@@ -51,6 +52,7 @@ en:
   create_word: "Create word"
   new_word: "New word"
   add_answer: "Add answer"
+  edit_word: "Edit word"
   message:
     account_activated: "Account activated!"
     create_success: "Create success"

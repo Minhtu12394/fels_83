@@ -15,9 +15,23 @@ class Admin::WordsController < ApplicationController
     end
   end
 
+  def edit
+    @word = Word.find params[:id]
+  end
+
+  def update
+    @word = Word.find params[:id]
+    if @word.update_attributes word_params
+      flash[:success] = t "message.update_success"
+      redirect_to [:admin, @word.category]
+    else
+      render "edit"
+    end
+  end
+
   private
   def word_params
     params.require(:word).permit :content, :category_id,
-      answers_attributes: [:content, :is_correct, :_destroy]
+      answers_attributes: [:id, :content, :is_correct, :_destroy]
   end
 end
