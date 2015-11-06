@@ -25,6 +25,7 @@ class Admin::WordsController < ApplicationController
       flash[:success] = t "message.update_success"
       redirect_to [:admin, @word.category]
     else
+      flash.now[:danger] = t "message.invalid_input"
       render "edit"
     end
   end
