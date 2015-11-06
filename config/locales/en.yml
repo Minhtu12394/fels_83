@@ -22,6 +22,7 @@ en:
   edit_profile: "Edit Profile"
   save_change: "Save changes"
   update_status: "Update status"
+  update_word: "Update word"
   post: "Post"
   invalid_activation_link: "Invalid activation link"
   account_activation: "Account activation"
@@ -50,6 +51,8 @@ en:
   edit_user: "Edit user"
   create_word: "Create word"
   new_word: "New word"
+  add_answer: "Add answer"
+  edit_word: "Edit word"
   message:
     account_activated: "Account activated!"
     create_success: "Create success"
@@ -67,6 +70,7 @@ en:
     email_have_send: "Email sent with password reset instructions"
     password_reset_has_expired: "Password reset has expired."
     cant_be_empty: "Can't be empty"
+    must_a_answer_correct: "Must be a answer correct"
   are_you_new_user: "New user"
   helpers:
     label:
