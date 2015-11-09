@@ -2,7 +2,7 @@ class LessonsController < ApplicationController
   include LessonsHelper
 
   before_action :load_category, only: [:create]
-  before_action :load_lesson, only: [:update, :show]
+  before_action :load_lesson, only: [:update, :show, :destroy]
 
   def show
   end
@@ -25,6 +25,12 @@ class LessonsController < ApplicationController
       flash[:danger] = t "message.update_failed"
     end
     redirect_to @lesson
+  end
+
+  def destroy
+    @lesson.destroy
+    flash[:success] = t "message.delete_success"
+    redirect_to @lesson.category
   end
 
   private

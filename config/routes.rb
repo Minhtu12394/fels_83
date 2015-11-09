@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   resources :categories, only: [:index, :show] do
     resources :lessons, only: [:create]
   end
-  resources :lessons, only: [:show, :update]
+  resources :lessons, only: [:show, :update, :destroy]
   resources :users do
     resources :followings, only: [:index]
     resources :followers, only: [:index]
