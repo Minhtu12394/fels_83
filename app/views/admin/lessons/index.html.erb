@@ -1,0 +1,11 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= t :lessons %></h3>
+  </div>
+  <% if @lessons.any? %>
+    <%= render @lessons %>
+    <div class="text-center">
+      <%= will_paginate @lessons %>
+    </div>
+  <% end %>
+</div>

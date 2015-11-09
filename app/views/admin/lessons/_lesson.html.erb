@@ -1,9 +1,12 @@
 <div class="list-group-item">
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-1">
       <b>#<%= lesson.id %></b>
     </div>
-    <div class="col-md-5">
+    <div class="col-md-3">
+      <%= lesson.user.name %>
+    </div>
+    <div class="col-md-4">
       <% if lesson.learned %>
         <span class="text-success">
           <%= t :finished %> (<%= rate_result_lesson lesson %>)
@@ -25,7 +28,7 @@
             <%= t :continue %>
           <% end %>
         <% end %>
-        <%= link_to lesson, method: :delete,
+        <%= link_to [:admin, lesson], method: :delete,
           class: "btn btn-danger btn-xs", data: {confirm: t(:you_sure)} do %>
           <span class="glyphicon glyphicon-remove"></span>
           <%= t :delete %>
