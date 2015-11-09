@@ -1,4 +1,5 @@
 class LessonsController < ApplicationController
+  include LessonsHelper
 
   before_action :load_category, only: [:create]
   before_action :load_lesson, only: [:update, :show]

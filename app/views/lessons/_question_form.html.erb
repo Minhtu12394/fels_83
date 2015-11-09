@@ -1,4 +1,8 @@
-<div class="panel panel-default">
+<% if @lesson.learned %>
+  <div class="panel panel-<%= result_status f.object.answer %>">
+<% else %>
+  <div class="panel panel-default">
+<% end %>
   <div class="panel-heading">
     <h3 class="panel-title">
       <%= f.object.word.content %>
