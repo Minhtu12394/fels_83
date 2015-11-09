@@ -4,6 +4,7 @@ class RelationshipsController < ApplicationController
   def create
     @user = User.find params[:followed_id]
     current_user.follow @user
+    make_activity t(:follow), @user
     respond_to do |format|
       format.js
     end
@@ -12,6 +13,7 @@ class RelationshipsController < ApplicationController
   def destroy
     @user = Relationship.find(params[:id]).followed
     current_user.unfollow @user
+    make_activity t(:unfollow), @user
     respond_to do |format|
       format.js
     end

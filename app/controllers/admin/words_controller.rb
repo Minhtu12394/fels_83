@@ -8,6 +8,7 @@ class Admin::WordsController < ApplicationController
     @word = Word.new word_params
     if @word.save
       flash[:success] = t "message.create_success"
+      make_activity t(:create_word), @word
       redirect_to [:admin, @word.category]
     else
       flash.now[:danger] = t "message.invalid_input"
@@ -23,6 +24,7 @@ class Admin::WordsController < ApplicationController
     @word = Word.find params[:id]
     if @word.update_attributes word_params
       flash[:success] = t "message.update_success"
+      make_activity t(:update_word), @word
       redirect_to [:admin, @word.category]
     else
       flash.now[:danger] = t "message.invalid_input"
@@ -34,6 +36,7 @@ class Admin::WordsController < ApplicationController
     word = Word.find params[:id]
     word.destroy
     flash[:success] = t "message.delete_success"
+    make_activity t(:destroy_word), word
     redirect_to [:admin, word.category]
   end
 

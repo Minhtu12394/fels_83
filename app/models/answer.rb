@@ -5,4 +5,8 @@ class Answer < ActiveRecord::Base
   validates :content, presence: true, length: {maximum: 50}
 
   scope :correct, ->{where is_correct: true}
+
+  def base_resource
+    "#{self.content}|#{self.word.base_resource}"
+  end
 end
