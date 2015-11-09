@@ -15,6 +15,10 @@ class Word < ActiveRecord::Base
   validates :content, presence: true, length: {minimum: 3}
   before_save :must_be_a_answer_correct
 
+  def base_resource
+    "#{self.name}|#{self.category.base_resource}"
+  end
+
   private
   def must_be_a_answer_correct
     unless self.answers.select{|answer| answer.is_correct}.size == 1
