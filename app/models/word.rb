@@ -4,6 +4,14 @@ class Word < ActiveRecord::Base
   accepts_nested_attributes_for :answers, allow_destroy: true,
     reject_if: proc {|answer| answer[:content].blank?}
 
+  scope :all_word, ->user_id{}
+  scope :learned, ->user_id{where "id in (select word_id from answers where
+    is_correct = '1' and id in (select answer_id from results where lesson_id in (select id from
+      lessons where user_id = #{user_id})))"}
+  scope :no_learn, ->user_id{where "id not in (select word_id from answers where
+    is_correct = '1' and id in (select answer_id from results where lesson_id in (select id from
+      lessons where user_id = #{user_id})))"}
+
   validates :content, presence: true, length: {minimum: 3}
   before_save :must_be_a_answer_correct
 

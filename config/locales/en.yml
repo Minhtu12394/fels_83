@@ -54,6 +54,7 @@ en:
   new_word: "New word"
   add_answer: "Add answer"
   edit_word: "Edit word"
+  filter: "Filter"
   message:
     delete_success: "Delete success"
     account_activated: "Account activated!"

@@ -18,10 +18,6 @@ class Admin::CategoriesController < ApplicationController
       .paginate page: params[:page], per_page: 4
   end
 
-  def show
-    @words = @category.words.paginate page: params[:page], per_page: 4
-  end
-
   def new
     @category = Category.new
   end
