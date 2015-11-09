@@ -5,7 +5,7 @@ class Lesson < ActiveRecord::Base
   has_many :words, through: :results
   has_many :answers, through: :results
   accepts_nested_attributes_for :results
-
+  scope :start_by, ->user_id{where user_id: user_id}
   before_create :create_words
 
   private
