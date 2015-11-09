@@ -1,43 +1,44 @@
 <%= form_for words_path, method: :get do |f| %>
-<div class="row">
-  <div class="col-md-8">
-    <%= select_tag :category_id,
-      options_from_collection_for_select(@categories, :id, :name,
-        params[:category_id]), include_blank: t("word.all"),
-          class: "form-control" %>
-    <div class="row">
-      <% ["all_word", "learned", "no_learn"].each_with_index do |option, index| %>
-        <div class="col-md-3">
-          <div class="radio">
-            <label>
-              <%= radio_button_tag :option, option,
-              (checked = true if params[:option] == option || params[:option]
-                .nil? && index == 0) %>
-              <%= t "word.#{option}" %>
-            </label>
+  <div class="row">
+    <div class="col-md-8">
+      <%= select_tag :category_id,
+        options_from_collection_for_select(@categories, :id, :name,
+          params[:category_id]), include_blank: t("word.all"),
+            class: "form-control" %>
+      <div class="row">
+        <% ["all_word", "learned", "no_learn"].each_with_index do |option, index| %>
+          <div class="col-md-3">
+            <div class="radio">
+              <label>
+                <%= radio_button_tag :option, option,
+                (checked = true if params[:option] == option || params[:option]
+                  .nil? && index == 0) %>
+                <%= t "word.#{option}" %>
+              </label>
+            </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <%= f.submit t("filter"), class: "btn btn-info btn-block", name: "" %>
     </div>
   </div>
-  <div class="col-md-4">
-    <%= f.submit t("filter"), class: "btn btn-info btn-block", name: "" %>
-  </div>
-</div>
 <% end %>
 
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title"><%= t :word_list %></h3>
+<h3><%= t :word_list %></h3>
+
+<% if @words.any? %>
+  <table class="table table-hover">
+    <tr>
+      <th><%= t :question %></th>
+      <th><%= t :answer %></th>
+    </tr>
+    <%= render @words %>
+  </table>
+  <div class="text-center">
+    <%= will_paginate %>
   </div>
-  <div id="words">
-    <% if @words.any? %>
-      <div class="list-group">
-        <%= render @words %>
-      </div>
-      <div class="text-center">
-        <%= will_paginate %>
-      </div>
-    <% end %>
-  </div>
-</div>
+<% else %>
+  <%= t :no_items_found %>
+<% end %>

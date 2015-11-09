@@ -12,6 +12,8 @@ class UsersController < ApplicationController
   end
 
   def show
+    @activities = @user.activities.order(created_at: :desc)
+      .paginate page: params[:page], per_page: 6 if logged_in?
   end
 
   def create
@@ -19,6 +21,7 @@ class UsersController < ApplicationController
     if @user.save
       @user.send_activation_email
       flash[:info] = t "message.please_activate_account"
+      make_activity t(:signup), nil, @user
       redirect_to root_url
     else
       flash.now[:danger] = t "message.invalid_input"
@@ -32,6 +35,7 @@ class UsersController < ApplicationController
   def update
     if @user.update_attributes user_params
       flash[:success] = t "message.profile_updated"
+      make_activity t(:update_profile)
       redirect_to @user
     else
       render "edit"
