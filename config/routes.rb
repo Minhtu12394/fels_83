@@ -18,9 +18,9 @@ Rails.application.routes.draw do
     resources :lessons, only: [:create]
   end
   resources :lessons, only: [:show, :update, :destroy]
+  
   resources :users do
-    resources :followings, only: [:index]
-    resources :followers, only: [:index]
+    get ":relationship_type" => "relationships#index", as: :relationships
   end
 
   resources :password_resets, only: [:new, :create, :edit, :update]
