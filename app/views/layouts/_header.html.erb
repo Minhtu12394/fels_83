@@ -17,16 +17,13 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><%= link_to t(:home), home_path %></li>
-        <li><%= link_to t(:users), users_path if logged_in? %></li>
+        <li><%= link_to t(:members), users_path if logged_in? %></li>
         <li><%= link_to t(:about), about_path %></li>
         <li><%= link_to t(:contact), contact_path %></li>
         <li><%= link_to t(:help), help_path %></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
-          <% if current_user.admin %>
-            <li><%= link_to t(:admin_managers), admin_root_url %></li>
-          <% end %>
           <li><%= link_to t(:profile), current_user %></li>
           <li><%= link_to t(:logout), logout_path, method: :delete %></li>
         <% else %>

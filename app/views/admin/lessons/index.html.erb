@@ -7,5 +7,7 @@
     <div class="text-center">
       <%= will_paginate @lessons %>
     </div>
+  <% else %>
+    <%= t :no_items_found %>
   <% end %>
 </div>

@@ -1,3 +1,3 @@
 <%= render "shared/user_info", user: @user unless current_user? @user %>
-<%= render "shared/show_users", title: t(:followers),
+<%= render "shared/show_users", title: @title,
   user: @user, users: @users %>

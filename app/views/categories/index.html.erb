@@ -1,13 +1,18 @@
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title"><%= t :categories %></h3>
-  </div>
-  <% if @categories.any? %>
-    <div class="list-group">
-      <%= render @categories %>
-    </div>
+<h3><%= t :categories %></h3>
+
+<% if @categories.any? %>
+  <table class="table table-hover">
+    <tr>
+      <th><%= t :name %></th>
+      <th><%= t :description %></th>
+      <th></th>
+    </tr>
+    <%= render @categories %>
+  </table>
   <div class="text-center">
     <%= will_paginate %>
   </div>
+<% else %>
+  <%= t :no_items_found %>
 <% end %>
-</div>
+

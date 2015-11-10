@@ -23,5 +23,7 @@
     <div class="text-center">
       <%= will_paginate @words %>
     </div>
+  <% else %>
+    <%= t :no_items_found %>
   <% end %>
 </div>
