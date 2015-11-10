@@ -1,6 +1,15 @@
-<div class="list-group-item">
+<tr>
+  <td>
   <%= link_to user do %>
-    <%= gravatar_for user, size: 30 %>
-    <%= user.name %>
-  <% end %>
-</div>
+      <%= gravatar_for user, size: 30 %>
+      <%= user.name %>
+    <% end %> 
+  </td>
+  <td>
+    <%= user.email %>
+  </td>
+  <td>
+    <%= user.admin ? "admin" : "user" %>
+  </td>
+  <td></td>
+</tr>

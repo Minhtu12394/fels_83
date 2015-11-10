@@ -1,13 +1,11 @@
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title"><%= t "activities" %></h3>
+<h3><%= t "activities" %></h3>
+<hr/>
+
+<% if activities.any? %>
+  <%= render activities  %>
+  <div class="text-center">
+    <%= will_paginate activities %>
   </div>
-  <% if activities.any? %>
-    <div class="list-group">
-      <%= render activities  %>
-    </div>
-    <div class="text-center">
-      <%= will_paginate activities %>
-    </div>
-  <% end %>
-</div>
+<% else %>
+  <%= t :no_items_found %>
+<% end %>

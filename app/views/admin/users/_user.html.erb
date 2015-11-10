@@ -1,11 +1,21 @@
-<div class="list-group-item">
-  <%= link_to [:admin, user] do %>
-    <%= gravatar_for user, size: 30 %>
-    <%= user.name %>
-  <% end %>
-  <%= link_to admin_user_path(user), method: :delete,
-    class: "pull-right btn btn-danger btn-xs",
-    data: {confirm: t(:you_sure)} do %>
-    <span class="glyphicon glyphicon-remove"></span> <%= t :delete %>
-  <% end %>
-</div>
+<tr>
+  <td>
+  <%= link_to user do %>
+      <%= gravatar_for user, size: 30 %>
+      <%= user.name %>
+    <% end %>
+  </td>
+  <td>
+    <%= user.email %>
+  </td>
+  <td>
+    <%= user.admin ? "admin" : "user" %>
+  </td>
+  <td>
+    <%= link_to admin_user_path(user), method: :delete,
+      class: "pull-right btn btn-danger btn-xs",
+      data: {confirm: t(:you_sure)} do %>
+      <span class="glyphicon glyphicon-remove"></span> <%= t :delete %>
+    <% end %>
+  </td>
+</tr>

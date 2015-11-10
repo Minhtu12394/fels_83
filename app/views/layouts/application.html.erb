@@ -11,18 +11,22 @@
   <%= render "layouts/header" %>
   <div class="container-fluid">
     <div class="row">
+      <div class="col-md-12">
+        <%= render "shared/flash_messages" %>
+      </div>
+    </div>
+    <div class="row">
       <div class="col-md-3">
         <% if logged_in? %>
           <%= render "shared/user_info", user: current_user %>
           <%= yield :side_bar %>
           <%= render "shared/menu_learn" %>
+          <%= render "shared/menu_management" if current_user.admin %>
         <% end %>
       </div>
-      <div class="col-md-6">
-        <%= render "shared/flash_messages" %>
+      <div class="col-md-9">
         <%= yield %>
       </div>
-      <div class="col-md-3"></div>
     </div>
   </div>
   <%= render "layouts/footer" %>
