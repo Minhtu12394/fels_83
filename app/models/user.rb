@@ -95,6 +95,10 @@ class User < ActiveRecord::Base
     "#{self.name},#{user_path self}"
   end
 
+  def to_param
+    "#{id} #{name}".parameterize
+  end
+
   private
   def create_activation_digest
     self.activation_token = User.new_token

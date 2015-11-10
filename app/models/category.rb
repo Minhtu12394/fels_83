@@ -11,4 +11,8 @@ class Category < ActiveRecord::Base
   def base_resource
     "#{self.name},#{category_path self}"
   end
+
+  def to_param
+    "#{id} #{name}".parameterize
+  end
 end
