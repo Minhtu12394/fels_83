@@ -1,0 +1,10 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= t :managements %></h3>
+  </div>
+  <div class="list-group">
+    <%= link_to t(:categories), admin_categories_path, class: "list-group-item" %>
+    <%= link_to t(:lessons), admin_lessons_path, class: "list-group-item" %>
+    <%= link_to t(:users), admin_users_path, class: "list-group-item" %>
+  </div>
+</div>
