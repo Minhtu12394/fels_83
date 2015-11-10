@@ -14,7 +14,6 @@ class Admin::CategoriesController < ApplicationController
   end
 
   def show
-    @category = Category.find params[:id]
     @words = @category.words.order(created_at: :desc)
       .paginate page: params[:page], per_page: 4
   end

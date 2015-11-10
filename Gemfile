@@ -1,7 +1,6 @@
 source "https://rubygems.org"
 
 gem "rails", "4.2.4"
-gem "mysql2", "~> 0.3.20"
 gem "bootstrap-sass", "3.2.0.0"
 gem "sass-rails", "~> 5.0"
 gem "uglifier", ">= 1.3.0"
@@ -17,10 +16,18 @@ gem "faker",        "1.4.2"
 gem "config"
 
 group :development, :test do
+  gem "mysql2", "~> 0.3.20"
   gem "byebug"
+  gem "better_errors"
 end
 
 group :development do
   gem "web-console", "~> 2.0"
   gem "spring"
+end
+
+group :production do
+  gem "pg",             "0.17.1"
+  gem "rails_12factor", "0.0.2"
+  gem "puma",           "2.11.1"
 end
