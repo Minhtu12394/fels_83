@@ -1,2 +1,3 @@
 $("#follow_form").html("<%= escape_javascript(render "shared/unfollow") %>")
-$("#followers").html("<%= @user.followers.count %>")
+$(".following").first().html("<%= current_user.following.size %>")
+$(".followers").last().html("<%= @user.followers.size %>")

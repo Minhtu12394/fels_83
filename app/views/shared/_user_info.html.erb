@@ -14,6 +14,9 @@
   <div class="col-md-12">
     <%= render "shared/stats", user: user %>
     <br/>
-    <%= render "shared/follow_form", user: user if logged_in? %>
+    <% if logged_in? %>
+      <%= render "shared/follow_form", user: user %>
+      <br/>
+    <% end %>
   </div>
 </div>
