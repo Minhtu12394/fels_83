@@ -11,13 +11,20 @@
   }
 }
 
-.field_with_errors {
-  @extend .has-error;
-  .form-control {
-    color: $state-danger-text;
-  }
-}
-
 #top_nav {
   border-radius:0px;
+}
+
+.col-actions {
+  width: 30%;
+}
+
+/* override will-paginate margins */
+.pagination {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.btn-action-home a {
+  font-size: 4em;
 }

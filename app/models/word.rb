@@ -16,7 +16,7 @@ class Word < ActiveRecord::Base
   before_save :must_be_a_answer_correct
 
   def base_resource
-    "#{self.name}|#{self.category.base_resource}"
+    "#{self.content}|#{self.category.base_resource}"
   end
 
   private

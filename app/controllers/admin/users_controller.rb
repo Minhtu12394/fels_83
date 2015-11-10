@@ -1,7 +1,7 @@
 class Admin::UsersController < ApplicationController
   def index
     @users = User.activated.order(created_at: :desc)
-      .paginate page: params[:page]
+      .paginate page: params[:page], per_page: 6
   end
 
   def destroy
