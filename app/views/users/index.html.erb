@@ -1,4 +1,1 @@
-<div class="list-group">
-  <%= render @users %>
-  <%= will_paginate %>
-</div>
+<%= render "shared/show_users", title: t(:members), users: @users %>
