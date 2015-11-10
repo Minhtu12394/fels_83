@@ -71,7 +71,6 @@ en:
   create_word: "create word"
   update_word: "update word"
   destroy_word: "destroy word"
-  of: "of"
   message:
     update_failed: "Update failed"
     update_success: "Update success"
