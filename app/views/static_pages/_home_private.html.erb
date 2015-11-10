@@ -1,1 +1,12 @@
+<div class="row btn-action-home">
+  <div class="col-md-4 col-md-offset-1">
+    <%= link_to t(:words), words_path,
+      class: "btn btn-info btn-block" %>
+  </div>
+  <div class="col-md-4 col-md-offset-2">
+    <%= link_to t(:lesson), categories_path,
+      class: "btn btn-primary btn-block" %>
+  </div>
+</div>
+<hr/>
 <%= render "shared/activities", activities: @activities %>

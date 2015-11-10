@@ -1,7 +1,7 @@
-<div class="list-group-item">
-  <%= t :user %>
+<p>
+  <%= t :you %>
   <%= activity.behavior %>
   <%= raw activity_link_to(activity.object) unless activity.object.nil? %>
   - <%= t :at %>
   <%= time_ago_in_words activity.created_at %>
-</div>
+</p>
