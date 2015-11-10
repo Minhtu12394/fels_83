@@ -1,13 +1,10 @@
-<h3><%= t :categories %></h3>
-
-<% if @categories.any? %>
+<% if words.any? %>
   <table class="table table-hover">
     <tr>
-      <th><%= t :name %></th>
-      <th><%= t :description %></th>
-      <th></th>
+      <th><%= t :question %></th>
+      <th><%= t :answer %></th>
     </tr>
-    <%= render @categories %>
+    <%= render words %>
   </table>
   <div class="text-center">
     <%= will_paginate %>
@@ -15,4 +12,3 @@
 <% else %>
   <%= t :no_items_found %>
 <% end %>
-

@@ -1,8 +1,7 @@
 class Word < ActiveRecord::Base
   belongs_to :category
   has_many :answers, dependent: :destroy
-  accepts_nested_attributes_for :answers, allow_destroy: true,
-    reject_if: proc {|answer| answer[:content].blank?}
+  accepts_nested_attributes_for :answers, allow_destroy: true
 
   scope :all_word, ->user_id{}
   scope :learned, ->user_id{where "id in (select word_id from answers where
