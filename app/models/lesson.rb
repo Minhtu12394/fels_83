@@ -16,6 +16,6 @@ class Lesson < ActiveRecord::Base
 
   private
   def create_words
-    self.words = self.category.words.order("RAND()").limit 20
+    self.words = self.category.words.order("RANDOM()").limit 20
   end
 end
