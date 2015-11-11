@@ -1,4 +1,6 @@
 class Admin::WordsController < ApplicationController
+  before_action :admin_user
+
   def new
     category = Category.find params[:category_id]
     @word = category.words.build

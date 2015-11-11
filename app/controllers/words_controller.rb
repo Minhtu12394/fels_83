@@ -1,4 +1,6 @@
 class WordsController < ApplicationController
+  before_action :logged_in_user
+
   def index
     @categories = Category.all
     if !params[:category_id].nil? && params[:category_id].empty?

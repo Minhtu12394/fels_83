@@ -1,5 +1,6 @@
 class Admin::LessonsController < ApplicationController
   include LessonsHelper
+  before_action :admin_user
 
   def index
     @lessons = Lesson.order(created_at: :desc)
