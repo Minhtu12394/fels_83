@@ -1,6 +1,6 @@
 class LessonsController < ApplicationController
   include LessonsHelper
-
+  before_action :logged_in_user
   before_action :load_category, only: [:create]
   before_action :load_lesson, only: [:update, :show, :destroy]
 
@@ -22,7 +22,7 @@ class LessonsController < ApplicationController
 
   def update
     if @lesson.update_attributes lesson_params
-      flash[:success] = "message.update_success"
+      flash[:success] = t "message.update_success"
 
       make_activity t(:finish_lesson), @lesson
     else

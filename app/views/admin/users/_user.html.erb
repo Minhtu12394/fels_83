@@ -12,10 +12,12 @@
     <%= user.admin ? "admin" : "user" %>
   </td>
   <td>
-    <%= link_to admin_user_path(user), method: :delete,
-      class: "pull-right btn btn-danger btn-xs",
-      data: {confirm: t(:you_sure)} do %>
-      <span class="glyphicon glyphicon-remove"></span> <%= t :delete %>
+    <% unless current_user? user %>
+      <%= link_to admin_user_path(user), method: :delete,
+        class: "pull-right btn btn-danger btn-xs",
+        data: {confirm: t(:you_sure)} do %>
+        <span class="glyphicon glyphicon-remove"></span> <%= t :delete %>
+      <% end %>
     <% end %>
   </td>
 </tr>

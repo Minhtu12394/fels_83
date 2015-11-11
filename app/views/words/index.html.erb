@@ -1,44 +1,31 @@
-<%= form_for words_path, method: :get do |f| %>
+<%= form_for words_path, method: :get, remote: true, html: {id: "filter_form"} do |f| %>
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-5">
       <%= select_tag :category_id,
         options_from_collection_for_select(@categories, :id, :name,
           params[:category_id]), include_blank: t("word.all"),
             class: "form-control" %>
-      <div class="row">
-        <% ["all_word", "learned", "no_learn"].each_with_index do |option, index| %>
-          <div class="col-md-3">
-            <div class="radio">
-              <label>
-                <%= radio_button_tag :option, option,
-                (checked = true if params[:option] == option || params[:option]
-                  .nil? && index == 0) %>
-                <%= t "word.#{option}" %>
-              </label>
-            </div>
-          </div>
-        <% end %>
-      </div>
     </div>
-    <div class="col-md-4">
-      <%= f.submit t("filter"), class: "btn btn-info btn-block", name: "" %>
+    <div class="col-md-6">
+      <% ["all_word", "learned", "no_learn"].each_with_index do |option, index| %>
+        <div class="col-md-3">
+          <div class="radio">
+            <label>
+              <%= radio_button_tag :option, option,
+              (checked = true if params[:option] == option || params[:option]
+                .nil? && index == 0) %>
+              <%= t "word.#{option}" %>
+            </label>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 <% end %>
+<hr/>
 
 <h3><%= t :word_list %></h3>
 
-<% if @words.any? %>
-  <table class="table table-hover">
-    <tr>
-      <th><%= t :question %></th>
-      <th><%= t :answer %></th>
-    </tr>
-    <%= render @words %>
-  </table>
-  <div class="text-center">
-    <%= will_paginate %>
-  </div>
-<% else %>
-  <%= t :no_items_found %>
-<% end %>
+<div id="words">
+  <%= render "words", words: @words %>
+</div>

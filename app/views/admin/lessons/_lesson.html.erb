@@ -1,39 +1,30 @@
-<div class="list-group-item">
-  <div class="row">
-    <div class="col-md-1">
-      <b>#<%= lesson.id %></b>
-    </div>
-    <div class="col-md-3">
-      <%= lesson.user.name %>
-    </div>
-    <div class="col-md-4">
-      <% if lesson.learned %>
-        <span class="text-success">
-          <%= t :finished %> (<%= rate_result_lesson lesson %>)
-        </span>
-      <% else %>
-        <span class="text-info"><%= t :opening %></span>
+<tr>
+  <td>
+    <b>#<%= lesson.id %></b>
+  </td>
+  <td>
+    <%= lesson.user.name %>
+  </td>
+  <td>
+    <% if lesson.learned %>
+      <span class="text-success">
+        <%= t :finished %> (<%= rate_result_lesson lesson %>)
+      </span>
+    <% else %>
+      <span class="text-info"><%= t :opening %></span>
+    <% end %>
+  </td>
+  <td class="text-right">
+    <% if lesson.learned %>
+      <%= link_to lesson, class: "btn btn-default btn-xs" do %>
+        <span class="glyphicon glyphicon-eye-open"></span>
+        <%= t :view_results %>
       <% end %>
-    </div>
-    <div class="col-md-4">
-      <div class="pull-right">
-        <% if lesson.learned %>
-          <%= link_to lesson, class: "btn btn-default btn-xs" do %>
-            <span class="glyphicon glyphicon-eye-open"></span>
-            <%= t :view_results %>
-          <% end %>
-        <% else %>
-          <%= link_to lesson, class: "btn btn-primary btn-xs" do %>
-            <span class="glyphicon glyphicon-play"></span>
-            <%= t :continue %>
-          <% end %>
-        <% end %>
-        <%= link_to [:admin, lesson], method: :delete,
-          class: "btn btn-danger btn-xs", data: {confirm: t(:you_sure)} do %>
-          <span class="glyphicon glyphicon-remove"></span>
-          <%= t :delete %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</div>
+    <% end %>
+    <%= link_to [:admin, lesson], method: :delete,
+      class: "btn btn-danger btn-xs", data: {confirm: t(:you_sure)} do %>
+      <span class="glyphicon glyphicon-remove"></span>
+      <%= t :delete %>
+    <% end %>
+  </td>
+</tr>

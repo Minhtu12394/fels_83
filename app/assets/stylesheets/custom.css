@@ -26,5 +26,6 @@
 }
 
 .btn-action-home a {
+  margin: 4px;
   font-size: 4em;
 }

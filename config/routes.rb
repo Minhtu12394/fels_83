@@ -19,8 +19,9 @@ Rails.application.routes.draw do
   end
   resources :lessons, only: [:show, :update, :destroy]
   
-  resources :users do
-    get ":relationship_type" => "relationships#index", as: :relationships
+  resources :users, except: [:destroy] do
+    get ":relationship_type" => "relationships#index", as: :relationships,
+      constraints: {relationship_type: /(following|followers)/}
   end
 
   resources :password_resets, only: [:new, :create, :edit, :update]
@@ -28,9 +29,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root "users#index"
-    resources :users
+    resources :users, only: [:index, :destroy]
     resources :categories do
-      resources :words
+      resources :words, except: [:index, :show]
     end
     resources :lessons, only: [:index, :destroy]
   end

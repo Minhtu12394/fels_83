@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
   before_action :find_user, only: [:show, :edit, :update]
+  before_action :logged_in_user, except: [:new, :create]
+  before_action :not_logged_in, only: [:new, :create]
 
   def index
     @users = User.activated.order(created_at: :desc)
@@ -13,7 +15,7 @@ class UsersController < ApplicationController
 
   def show
     @activities = @user.activities.order(created_at: :desc)
-      .paginate page: params[:page], per_page: 6 if logged_in?
+      .paginate page: params[:page], per_page: 9 if logged_in?
   end
 
   def create

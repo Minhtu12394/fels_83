@@ -1,4 +1,6 @@
 class Admin::UsersController < ApplicationController
+  before_action :admin_user
+
   def index
     @users = User.activated.order(created_at: :desc)
       .paginate page: params[:page], per_page: 6
