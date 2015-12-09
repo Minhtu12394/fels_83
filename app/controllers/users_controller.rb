@@ -19,15 +19,24 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new user_params
-    if @user.save
-      @user.send_activation_email
-      flash[:info] = t "message.please_activate_account"
-      make_activity t(:signup), nil, @user
-      redirect_to root_url
-    else
-      flash.now[:danger] = t "message.invalid_input"
-      render "new"
+    respond_to do |format|
+      @user = User.new user_params
+      if @user.save
+        format.html{redirect_to root_url}
+        format.json do
+          render json: {message: t("message.signup_success")},
+            status: :ok
+        end
+      else
+        format.html do
+          flash.now[:danger] = t "message.invalid_input"
+          render "new"
+        end
+        format.json do
+          render json: {message: t("message.invalid_input")},
+            status: :unauthorized
+        end
+      end
     end
   end
 

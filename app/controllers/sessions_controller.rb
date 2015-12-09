@@ -5,22 +5,26 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by email: session_params[:email].downcase
+    respond_to do |format|
+      user = User.find_by email: session_params[:email].downcase
 
-    if user && user.authenticate(session_params[:password])
-      if user.activated?
+      if user && user.authenticate(session_params[:password])
         log_in user
         session_params[:remember_me] == "1" ? remember(user) : forget(user)
-        make_activity t(:login)
+
+        format.html{redirect_to home_path}
+        format.json do
+          render json: {user: user, message: t(:login_success)}, status: :ok
+        end
       else
-        message = t "message.account_not_active"
-        message += t "message.check_account_to_active"
-        flash[:warning] = message
+        format.html do
+          flash.now[:danger] = t "message.invalid_login"
+          render :new
+        end
+        format.json do
+          render json: {message: t(:login_failed)}, status: :unauthorized
+        end
       end
-      redirect_to home_path
-    else
-      flash.now[:danger] = t "message.invalid_login"
-      render "new"
     end
   end
 
