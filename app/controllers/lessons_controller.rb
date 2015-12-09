@@ -33,14 +33,22 @@ class LessonsController < ApplicationController
   end
 
   def update
-    if @lesson.update_attributes lesson_params
-      flash[:success] = t "message.update_success"
-
-      make_activity t(:finish_lesson), @lesson
-    else
-      flash[:danger] = t "message.update_failed"
+    respond_to do |format|
+      if @lesson.update_attributes lesson_params
+        success_message = t "message.update_success"
+        format.html{flash[:success] = success_message}
+        format.json do
+          render json: {lesson: @lesson, message: success_message}, status: :ok
+        end
+      else
+        failed_message = t "message.update_failed"
+        format.html{flash[:danger] = failed_message}
+        format.json do
+          render json: {message: failed_message}, status: :bad_request
+        end
+      end
+      format.html{redirect_to @lesson}
     end
-    redirect_to @lesson
   end
 
   def destroy
