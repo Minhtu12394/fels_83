@@ -8,15 +8,27 @@ class LessonsController < ApplicationController
   end
 
   def create
-    @lesson = Lesson.new category_id: @category.id, user_id: current_user.id
-    if @lesson.save
-      flash[:success] = t "message.create_success"
-      redirect_to @lesson
-
-      make_activity t(:start_lesson), @lesson
-    else
-      flash[:danger] = t "message.create_failed"
-      redirect_to @category
+    respond_to do |format|
+      @lesson = Lesson.new category_id: @category.id, user_id: current_user.id
+      if @lesson.save
+        success_message = t "message.create_success"
+        format.html do
+          flash[:success] = success_message
+          redirect_to @lesson
+        end
+        format.json do
+          render json: {lesson: @lesson, message: success_message}, status: :ok
+        end
+      else
+        failed_message = t "message.create_failed"
+        format.html do
+          flash[:danger] = failed_message
+          redirect_to @category
+        end
+        format.json do
+          render json: {message: failed_message}, status: :bad_request
+        end
+      end
     end
   end
 
