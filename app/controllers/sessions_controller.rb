@@ -14,7 +14,8 @@ class SessionsController < ApplicationController
 
         format.html{redirect_to home_path}
         format.json do
-          render json: {user: user, message: t(:login_success)}, status: :ok
+          render json: {user: user, message: t(:login_success)},
+            status: :ok
         end
       else
         format.html do
