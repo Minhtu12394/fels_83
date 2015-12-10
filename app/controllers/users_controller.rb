@@ -14,8 +14,14 @@ class UsersController < ApplicationController
   end
 
   def show
-    @activities = @user.activities.order(created_at: :desc)
-      .paginate page: params[:page], per_page: 9 if logged_in?
+    respond_to do |format|
+      @activities = @user.activities.order(created_at: :desc)
+        .paginate page: params[:page], per_page: 9 if logged_in?
+
+      format.json do
+        render json: {user: @user, activities: @activities}, status: :ok
+      end
+    end
   end
 
   def create
@@ -44,12 +50,26 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update_attributes user_params
-      flash[:success] = t "message.profile_updated"
-      make_activity t(:update_profile)
-      redirect_to @user
-    else
-      render "edit"
+    respond_to do |format|
+      if @user.update_attributes user_params
+        success_message = t "message.profile_updated"
+        format.html do
+          flash[:success] = success_message
+          redirect_to @user
+        end
+        format.json do
+          render json: {user: @user, message: success_message}, status: :ok
+        end
+      else
+        failed_message = t "message.update_failed"
+        format.html do
+          flash.now[:danger] = failed_message
+          render "edit"
+        end
+        format.json do
+          render json: {message: failed_message}, status: :bad_request
+        end
+      end
     end
   end
 
