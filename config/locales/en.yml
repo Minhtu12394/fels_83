@@ -140,3 +140,8 @@ en:
     zero: "The form contains no error"
     one: "The form contains 1 error"
     other: "The form contains %{count} errors"
+  login_success: "Sign in success"
+  signup_success: "Sign up success"
+  follow_success: "Follow success"
+  unfollow_success: "Unfollow success"
+  please_logout: "Please logout"

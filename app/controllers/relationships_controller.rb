@@ -14,8 +14,10 @@ class RelationshipsController < ApplicationController
   def create
     respond_to do |format|
       @user = User.find params[:followed_id]
-      current_user.follow @user
-      make_activity t(:follow), @user
+      unless current_user.following?(@user)
+        current_user.follow @user
+        make_activity t(:follow), @user
+      end
       format.js
       format.json{render json: {message: t(:follow_success)}, status: :ok}
     end
