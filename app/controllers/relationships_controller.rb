@@ -12,20 +12,22 @@ class RelationshipsController < ApplicationController
     end
   end
   def create
-    @user = User.find params[:followed_id]
-    current_user.follow @user
-    make_activity t(:follow), @user
     respond_to do |format|
+      @user = User.find params[:followed_id]
+      current_user.follow @user
+      make_activity t(:follow), @user
       format.js
+      format.json{render json: {message: t(:follow_success)}, status: :ok}
     end
   end
 
   def destroy
-    @user = Relationship.find(params[:id]).followed
-    current_user.unfollow @user
-    make_activity t(:unfollow), @user
     respond_to do |format|
+      @user = Relationship.find(params[:id]).followed
+      current_user.unfollow @user
+      make_activity t(:unfollow), @user
       format.js
+      format.json{render json: {message: t(:unfollow_success)}, status: :ok}
     end
   end
 end
