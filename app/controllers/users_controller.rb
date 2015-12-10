@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
+  before_action :logged_in_user, except: [:new, :create]
   before_action :correct_user, only: [:edit, :update]
   before_action :find_user, only: [:show, :edit, :update]
-  before_action :logged_in_user, except: [:new, :create]
   before_action :not_logged_in, only: [:new, :create]
 
   def index
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
         .paginate page: params[:page], per_page: 9 if logged_in?
 
       format.json do
-        render json: {user: @user, activities: @activities}, status: :ok
+        render json: @user, status: :ok
       end
     end
   end
@@ -35,11 +35,10 @@ class UsersController < ApplicationController
         end
       else
         format.html do
-          flash.now[:danger] = t "message.invalid_input"
           render "new"
         end
         format.json do
-          render json: {message: t("message.invalid_input")},
+          render json: {message: @user.errors},
             status: :unauthorized
         end
       end
@@ -51,14 +50,14 @@ class UsersController < ApplicationController
 
   def update
     respond_to do |format|
-      if @user.update_attributes user_params
+      if @user.update_attributes update_params
         success_message = t "message.profile_updated"
         format.html do
           flash[:success] = success_message
           redirect_to @user
         end
         format.json do
-          render json: {user: @user, message: success_message}, status: :ok
+          render json: @user, status: :ok
         end
       else
         failed_message = t "message.update_failed"
@@ -74,6 +73,11 @@ class UsersController < ApplicationController
   end
 
   private
+  def update_params
+    params.require(:user).permit :name, :password,
+      :password_confirmation
+  end
+
   def user_params
     params.require(:user).permit :name, :email, :password,
       :password_confirmation

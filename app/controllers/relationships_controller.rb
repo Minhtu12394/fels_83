@@ -25,9 +25,12 @@ class RelationshipsController < ApplicationController
 
   def destroy
     respond_to do |format|
-      @user = Relationship.find(params[:id]).followed
-      current_user.unfollow @user
-      make_activity t(:unfollow), @user
+      relationship = Relationship.find_by(id: params[:id])
+      if relationship
+        @user = relationship.followed
+        current_user.unfollow @user
+        make_activity t(:unfollow), @user
+      end
       format.js
       format.json{render json: {message: t(:unfollow_success)}, status: :ok}
     end

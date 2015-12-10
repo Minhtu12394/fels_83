@@ -14,8 +14,7 @@ class SessionsController < ApplicationController
 
         format.html{redirect_to home_path}
         format.json do
-          render json: {user: user, message: t(:login_success)},
-            status: :ok
+          render json: user, status: :ok
         end
       else
         format.html do
@@ -23,16 +22,22 @@ class SessionsController < ApplicationController
           render :new
         end
         format.json do
-          render json: {message: t(:login_failed)}, status: :unauthorized
+          render json: {message: t("message.invalid_login")},
+            status: :unauthorized
         end
       end
     end
   end
 
   def destroy
-    make_activity t(:logout)
-    log_out if logged_in?
-    redirect_to root_url
+    respond_to do |format|
+      if logged_in?
+        make_activity t(:logout)
+        log_out
+      end
+      format.html{redirect_to root_url}
+      format.json{render json: {message: t(:logout_success)}, status: :ok}
+    end
   end
 
   def session_params

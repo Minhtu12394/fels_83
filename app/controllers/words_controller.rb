@@ -14,7 +14,7 @@ class WordsController < ApplicationController
       @words = @words.paginate page: params[:page], per_page: 6
 
       format.json do
-        render json: {categories: @categories, words: @words}, status: :ok
+        render json: @words, status: :ok
       end
     end
   end

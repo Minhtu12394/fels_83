@@ -11,13 +11,12 @@ class LessonsController < ApplicationController
     respond_to do |format|
       @lesson = Lesson.new category_id: @category.id, user_id: current_user.id
       if @lesson.save
-        success_message = t "message.create_success"
         format.html do
-          flash[:success] = success_message
+          flash[:success] = t "message.create_success"
           redirect_to @lesson
         end
         format.json do
-          render json: {lesson: @lesson, message: success_message}, status: :ok
+          render json: @lesson, status: :ok
         end
       else
         failed_message = t "message.create_failed"
@@ -35,10 +34,9 @@ class LessonsController < ApplicationController
   def update
     respond_to do |format|
       if @lesson.update_attributes lesson_params
-        success_message = t "message.update_success"
-        format.html{flash[:success] = success_message}
+        format.html{flash[:success] = t "message.update_success"}
         format.json do
-          render json: {lesson: @lesson, message: success_message}, status: :ok
+          render json: @lesson, status: :ok
         end
       else
         failed_message = t "message.update_failed"
