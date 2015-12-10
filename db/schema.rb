@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 20151027030612) do
     t.string   "password_digest",   limit: 255
     t.string   "remember_digest",   limit: 255
     t.string   "activation_digest", limit: 255
-    t.boolean  "activated",                     default: false
+    t.boolean  "activated",                     default: true
     t.datetime "activated_at"
     t.string   "reset_digest",      limit: 255
     t.datetime "reset_send_at"
