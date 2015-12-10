@@ -6,7 +6,7 @@ class CategoriesController < ApplicationController
       @categories = Category.order(created_at: :desc)
         .paginate page: params[:page], per_page: 7
       format.html{}
-      format.json{render json: {categories: @categories}, status: :ok}
+      format.json{render json: @categories, status: :ok}
     end
   end
 

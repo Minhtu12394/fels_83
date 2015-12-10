@@ -14,6 +14,8 @@ gem "will_paginate",  "3.0.7"
 gem "bootstrap-will_paginate",  "0.0.10"
 gem "faker",        "1.4.2"
 gem "config"
+gem "active_model_serializers", github: "rails-api/active_model_serializers",
+  branch: "0-8-stable"
 
 group :development, :test do
   gem "mysql2", "~> 0.3.20"
