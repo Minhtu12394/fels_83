@@ -20,4 +20,9 @@ module ApplicationHelper
     link_to name, "#", onclick: "add_fields(this, \"#{association}\",
       \"#{escape_javascript(fields)}\")", class: "btn btn-default btn-block"
   end
+
+  def markdown_parse str
+    bc = BlueCloth.new str, pandoc_headers: true
+    simple_format bc.to_html
+  end
 end
