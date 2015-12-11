@@ -27,8 +27,8 @@ following.each {|u| user.follow u}
 followers.each {|u| u.follow user}
 
 15.times do
-  name = Faker::Lorem.sentence
-  description = Faker::Lorem.paragraph
+  name = Faker::Name.title
+  description = Faker::Lorem.sentence
   cate = Category.create! name: name, description: description
 
   40.times do

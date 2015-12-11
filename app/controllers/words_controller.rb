@@ -12,7 +12,7 @@ class WordsController < ApplicationController
         @words = Word.all
       end
       @words = @words.paginate page: params[:page], per_page: 6
-
+      format.html
       format.json do
         render json: @words, status: :ok
       end

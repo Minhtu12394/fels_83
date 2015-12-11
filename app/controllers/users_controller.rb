@@ -28,6 +28,8 @@ class UsersController < ApplicationController
     respond_to do |format|
       @user = User.new user_params
       if @user.save
+        make_activity t(:signup), nil, @user
+
         format.html{redirect_to root_url}
         format.json do
           render json: {message: t("message.signup_success")},
@@ -52,6 +54,8 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update_attributes update_params
         success_message = t "message.profile_updated"
+        make_activity t(:update_profile)
+
         format.html do
           flash[:success] = success_message
           redirect_to @user
