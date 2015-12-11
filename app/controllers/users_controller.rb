@@ -92,7 +92,12 @@ class UsersController < ApplicationController
   end
 
   def correct_user
-    @user = User.find params[:id]
-    redirect_to(root_url) unless current_user? @user
+    respond_to do |format|
+      @user = User.find params[:id]
+      format.html{redirect_to(root_url) unless current_user? @user}
+      format.json do
+        render json: {message: t(:cant_edit_other_user)}, status: :bad_request
+      end
+    end
   end
 end
