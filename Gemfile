@@ -16,6 +16,7 @@ gem "faker",        "1.4.2"
 gem "config"
 gem "active_model_serializers", github: "rails-api/active_model_serializers",
   branch: "0-8-stable"
+gem "bluecloth"
 
 group :development, :test do
   gem "mysql2", "~> 0.3.20"

@@ -11,6 +11,7 @@ class SessionsController < ApplicationController
       if user && user.authenticate(session_params[:password])
         log_in user
         session_params[:remember_me] == "1" ? remember(user) : forget(user)
+        make_activity t(:login)
 
         format.html{redirect_to home_path}
         format.json do
