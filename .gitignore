@@ -22,3 +22,4 @@ pickle-email-*.html
 /.idea
 my_note
 spec/
+public/uploads/

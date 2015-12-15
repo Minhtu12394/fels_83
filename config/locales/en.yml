@@ -148,3 +148,4 @@ en:
   logout_success: Logout success
   apis_document: APIs Document
   cant_edit_other_user: Cant edit other user
+  should_be_less_5_MB: "should be less than 5MB"

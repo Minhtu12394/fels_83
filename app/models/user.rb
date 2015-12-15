@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
 
   attr_accessor :remember_token, :activation_token, :reset_token
 
+  mount_uploader :avatar, AvatarUploader
+
   has_many :activities, dependent: :destroy
   has_many :lessons, dependent: :destroy
 
@@ -21,8 +23,8 @@ class User < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@([a-z\d\-]+\.)+[a-z]+\z/i
   validates :email, presence: true, length: {maximum: 255},
     format: {with: VALID_EMAIL_REGEX}, uniqueness: {case_sensitive: false}
-
   validates :password, length: {minimum: 6}, presence: true, allow_nil: true
+  validate  :avatar_size
 
   before_create :create_activation_digest
 
@@ -103,5 +105,11 @@ class User < ActiveRecord::Base
   def create_activation_digest
     self.activation_token = User.new_token
     self.activation_digest = User.digest activation_token
+  end
+
+  def avatar_size
+    if avatar.size > 5.megabytes
+      errors.add(:avatar, I18n.t("should_be_less_5_MB"))
+    end
   end
 end
