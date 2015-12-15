@@ -1,4 +1,4 @@
-<%= form_for @user do |f| %>
+<%= form_for @user, html: {multipart: true} do |f| %>
   <%= render "shared/errors_message_by", object: @user %>
   <div class="form-group">
     <%= f.label :name %>
@@ -18,6 +18,10 @@
   <div class="form-group">
     <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.file_field :avatar, accept: "image/jpeg,image/gif,image/png" %>
   </div>
 
   <%= f.submit yield(:button_text), class: "btn btn-primary" %>

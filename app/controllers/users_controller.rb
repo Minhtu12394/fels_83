@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       @activities = @user.activities.order(created_at: :desc)
         .paginate page: params[:page], per_page: 9 if logged_in?
-
+      format.html
       format.json do
         render json: @user, status: :ok
       end
@@ -78,7 +78,7 @@ class UsersController < ApplicationController
 
   private
   def update_params
-    params.require(:user).permit :name, :password,
+    params.require(:user).permit :name, :password, :avatar,
       :password_confirmation
   end
 
@@ -92,11 +92,14 @@ class UsersController < ApplicationController
   end
 
   def correct_user
-    respond_to do |format|
-      @user = User.find params[:id]
-      format.html{redirect_to(root_url) unless current_user? @user}
-      format.json do
-        render json: {message: t(:cant_edit_other_user)}, status: :bad_request
+    @user = User.find params[:id]
+    unless current_user? @user
+      respond_to do |format|
+        format.html{redirect_to(root_url)}
+        format.json do
+          render json: {message: t(:cant_edit_other_user)},
+            status: :bad_request
+        end
       end
     end
   end
