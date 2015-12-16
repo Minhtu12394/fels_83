@@ -4,6 +4,14 @@ class UserSerializer < ActiveModel::Serializer
   has_many :activities
 
   def avatar
-    object.avatar.present? ? root_url + object.avatar.to_s[1..-1] : ""
+    if object.avatar.present?
+      if Rails.env.production?
+        object.avatar.to_s
+      else
+        root_url + object.avatar.to_s[1..-1]
+      end
+    else
+      ""
+    end
   end
 end
