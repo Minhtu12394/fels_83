@@ -3,7 +3,8 @@ class WordSerializer < ActiveModel::Serializer
 
   has_many :answers
 
+  private
   def result_id
-    @options[:result].id
+    @options[:result].try :id
   end
 end

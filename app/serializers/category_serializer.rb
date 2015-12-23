@@ -1,6 +1,7 @@
 class CategorySerializer < ActiveModel::Serializer
   attributes :id, :name, :photo
 
+  private
   def photo
     if object.photo.present?
       if Rails.env.production?

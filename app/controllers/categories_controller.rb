@@ -5,9 +5,14 @@ class CategoriesController < ApplicationController
   def index
     respond_to do |format|
       @categories = Category.order(created_at: :desc)
-        .paginate page: params[:page], per_page: 7
+        .paginate page: params[:page], per_page: (params[:per_page] || 10)
       format.html{}
-      format.json{render json: @categories, status: :ok}
+      format.json do
+        render json: @categories,
+          meta: @categories.total_pages,
+          meta_key: "total_pages",
+          status: :ok
+      end
     end
   end
 

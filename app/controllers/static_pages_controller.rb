@@ -55,7 +55,7 @@ class StaticPagesController < ApplicationController
 
 
 **Response**:
-`{"user": {"id": 1, "name": "Nguyen Tien Manh", "email":"example@railstutorial.org", "avatar": "http://localhost:3000/uploads/user/avatar/1/Screenshot_from_2015-12-14_14_47_00.png", "admin": true, "auth_token": "E6nAVPWqAsMH0hvTquTipg", "created_at": "2015-12-11T03:30:31.000Z", "updated_at": "2015-12-11T04:09:51.000Z", "activities": [{"id":1, "content": "Logout", "created_at": "2015-12-11T03:37:06.000Z"}, {"id": 2, "content": "Login", "created_at": "2015-12-11T03:37:08.000Z"}]}}`
+`{"user": {"id": 1, "name": "Nguyen Tien Manh", "email":"example@railstutorial.org", "avatar": "http://localhost:3000/uploads/user/avatar/1/Screenshot_from_2015-12-14_14_47_00.png", "admin": true, "auth_token": "E6nAVPWqAsMH0hvTquTipg", "created_at": "2015-12-11T03:30:31.000Z", "updated_at": "2015-12-11T04:09:51.000Z", "learned_words": 1, "activities": [{"id":1, "content": "Logout", "created_at": "2015-12-11T03:37:06.000Z"}, {"id": 2, "content": "Login", "created_at": "2015-12-11T03:37:08.000Z"}]}}`
 
 ## **Sign out**
 
@@ -70,19 +70,20 @@ class StaticPagesController < ApplicationController
 
 ## **Get categories**
 
-**URL**: [http://localhost:3000/categories.json?auth_token=E6nAVPWqAsMH0hvTquTipg](http://localhost:3000/categories.json?auth_token=E6nAVPWqAsMH0hvTquTipg)
+**URL**: [http://localhost:3000/categories.json](http://localhost:3000/categories.json)
 
 **Method**: **GET**
 
 **Param request**:
 `- page`, type: integer, numericality: {greater&#95;than&#95;or&#95;equal&#95;to: 0}
+`- per_page`, type: integer, optional, default: 10
 `- auth_token`, type: string, presence: true
 
 **Request example**
 `GET: http://localhost:3000/categories.json?page=3`
 
 **Response**:
-`{"categories": [{"id": 15, "name": "International Mobility Liason"}, {"id": 14, "name": "Regional Branding Representative"}]}`
+`{"total_pages": 10, "categories": [{"id": 15, "name": "International Mobility Liason"}, {"id": 14, "name": "Regional Branding Representative"}]}`
 
 ## **Create lesson**
 **URL**: [http://localhost:3000/categories/1/lessons.json](http://localhost:3000/categories/1/lessons.json)
@@ -124,7 +125,8 @@ class StaticPagesController < ApplicationController
 **Param request**:
 `- category_id`, type: integer
 `- option`, type: string("all&#95;word", "learned" or "no&#95;learn")
-`- page`, type: integer, numericality: {greater&#95;than: 0}
+`- page`, type: integer, numericality: {greater&#95;than: 0}, optional
+`- per_page`, type: integer, optional, default: 10
 `- auth_token`, type: string, presence: true
 
 **Request example**
@@ -143,7 +145,7 @@ class StaticPagesController < ApplicationController
 `- auth_token`, type: string, presence: true
 
 **Response**:
-`{"user": {"id": 1, "name": "Nguyen Tien Manh", "email": "example@railstutorial.org", "avatar": "http://localhost:3000/uploads/user/avatar/1/Screenshot_from_2015-12-14_14_47_00.png", "admin": true, "created_at": "2015-12-11T03:30:31.000Z", "updated_at": "2015-12-11T04:09:51.000Z", "activities": [{"id": 1, "content": "Logout", "created_at": "2015-12-11T03:37:06.000Z"}, {"id": 2, "content": "Login", "created_at": "2015-12-11T03:37:08.000Z"}]}}`
+`{"user": {"id": 1, "name": "Nguyen Tien Manh", "email": "example@railstutorial.org", "avatar": "http://localhost:3000/uploads/user/avatar/1/Screenshot_from_2015-12-14_14_47_00.png", "admin": true, "created_at": "2015-12-11T03:30:31.000Z", "updated_at": "2015-12-11T04:09:51.000Z", "learned_words": 1, "activities": [{"id": 1, "content": "Logout", "created_at": "2015-12-11T03:37:06.000Z"}, {"id": 2, "content": "Login", "created_at": "2015-12-11T03:37:08.000Z"}]}}`
 
 ## **Update profile**
 
@@ -152,10 +154,11 @@ class StaticPagesController < ApplicationController
 **Method**: **PATCH**
 
 **Param request**:
-`- user[name]`, type: string, presence: true, length: {maximum: 50}
-`- user[password]`, type: string, length: {minimum: 6}, presence: true, allow&#95;nil: true
+`- user[name]`, type: string, length: {maximum: 50}
+`- user[email]`, type: string, length: {maximum: 255}
+`- user[password]`, type: string, length: {minimum: 6}, allow&#95;nil: true
 `- user[password_confirmation]`, type: string
-`- user[avatar]`, type: file
+`- user[avatar]`, type: base64 data
 `- auth_token`, type: string, presence: true
 
 **Request example**

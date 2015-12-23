@@ -12,10 +12,10 @@ class WordsController < ApplicationController
       else
         @words = Word.all
       end
-      @words = @words.paginate page: params[:page], per_page: 6
+      @words = @words.paginate page: params[:page], per_page: (params[:per_page] || 10)
       format.html
       format.json do
-        render json: @words, status: :ok
+        render json: @words, meta: @words.total_pages, meta_key: "total_pages", status: :ok
       end
     end
   end
