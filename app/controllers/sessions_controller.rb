@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
-  before_action :not_logged_in, only: [:new, :create]
+  before_action :not_logged_in, only: [:new, :create], unless: :json_request?
+  before_action :verify_session_params!, only: :create
 
   def new
   end
@@ -15,6 +16,7 @@ class SessionsController < ApplicationController
 
         format.html{redirect_to home_path}
         format.json do
+          byebug
           render json: user, status: :ok
         end
       else
@@ -41,7 +43,14 @@ class SessionsController < ApplicationController
     end
   end
 
+  private
   def session_params
     params.require(:session).permit :email, :password, :remember_me
+  end
+
+  def verify_session_params!
+    if params[:session].blank?
+      render json: {message: "Session params is missing or wrong"}, status: :bad_request
+    end
   end
 end

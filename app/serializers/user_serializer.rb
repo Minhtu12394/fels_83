@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :name, :email, :admin, :created_at, :updated_at, :avatar
+  attributes :id, :name, :email, :admin, :created_at, :updated_at, :avatar, :auth_token
 
   has_many :activities
 
@@ -13,5 +13,9 @@ class UserSerializer < ActiveModel::Serializer
     else
       ""
     end
+  end
+
+  def auth_token
+    current_user.auth_token if current_user == self.object
   end
 end

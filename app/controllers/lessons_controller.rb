@@ -1,8 +1,9 @@
 class LessonsController < ApplicationController
   include LessonsHelper
-  before_action :logged_in_user
+  before_action :logged_in_user, unless: :json_request?
   before_action :load_category, only: [:create]
   before_action :load_lesson, only: [:update, :show, :destroy]
+  before_action :verify_auth_token!, if: :json_request?
 
   def show
   end

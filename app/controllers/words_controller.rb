@@ -1,5 +1,6 @@
 class WordsController < ApplicationController
-  before_action :logged_in_user
+  before_action :logged_in_user, unless: :json_request?
+  before_action :verify_auth_token!, if: :json_request?
 
   def index
     respond_to do |format|

@@ -25,6 +25,8 @@ module SessionsHelper
         log_in user
         @current_user = user
       end
+    elsif auth_token = params[:auth_token]
+      @current_user ||= User.find_by auth_token: auth_token
     end
   end
 
