@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, except: [:new, :create]
+  before_action :logged_in_user, except: [:new, :create], unless: :json_request?
   before_action :correct_user, only: [:edit, :update]
   before_action :find_user, only: [:show, :edit, :update]
   before_action :not_logged_in, only: [:new, :create]
+  before_action :verify_auth_token!, except: [:new, :create], if: :json_request?
 
   def index
     @users = User.activated.order(created_at: :desc)

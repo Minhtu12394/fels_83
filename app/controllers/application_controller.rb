@@ -50,4 +50,14 @@ class ApplicationController < ActionController::Base
   def json_request?
     request.format.json?
   end
+
+  def verify_auth_token!
+    if params[:auth_token].blank? || !existed_user?
+      render json: {error: "Authentication token is wrong"}, status: :bad_request
+    end
+  end
+
+  def existed_user?
+    params[:auth_token] && User.find_by(auth_token: params[:auth_token])
+  end
 end
