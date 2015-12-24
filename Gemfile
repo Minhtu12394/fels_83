@@ -21,7 +21,6 @@ gem "carrierwave"
 gem "mini_magick"
 gem "fog"
 gem "dotenv-rails"
-gem "sqlite3"
 
 group :development, :test do
   gem "mysql2", "~> 0.3.20"
