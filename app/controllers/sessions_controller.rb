@@ -16,7 +16,6 @@ class SessionsController < ApplicationController
 
         format.html{redirect_to home_path}
         format.json do
-          byebug
           render json: user, status: :ok
         end
       else
