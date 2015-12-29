@@ -53,7 +53,8 @@ class UsersController < ApplicationController
 
   def update
     respond_to do |format|
-      if @user.update_attributes update_params
+      decode_avatar_data if json_request?
+      if @user.update_attributes user_params
         success_message = t "message.profile_updated"
         make_activity t(:update_profile)
 
@@ -78,13 +79,8 @@ class UsersController < ApplicationController
   end
 
   private
-  def update_params
-    params.require(:user).permit :name, :password, :avatar,
-      :password_confirmation
-  end
-
   def user_params
-    params.require(:user).permit :name, :email, :password,
+    params.require(:user).permit :name, :email, :avatar, :password,
       :password_confirmation
   end
 
@@ -103,5 +99,14 @@ class UsersController < ApplicationController
         end
       end
     end
+  end
+
+  def decode_avatar_data
+    return if params[:user][:avatar].nil?
+    data = StringIO.new(Base64.decode64(params[:user][:avatar]))
+    data.class.class_eval {attr_accessor :original_filename, :content_type}
+    data.original_filename = "upload.png"
+    data.content_type = "image/png"
+    params[:user][:avatar] = data
   end
 end
