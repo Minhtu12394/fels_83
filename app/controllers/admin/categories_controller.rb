@@ -1,6 +1,7 @@
 class Admin::CategoriesController < ApplicationController
   before_action :load_category, only: [:edit, :show, :update]
   before_action :admin_user
+
   def index
     @categories = Category.order(created_at: :desc)
       .paginate page: params[:page], per_page: 4
@@ -50,7 +51,7 @@ class Admin::CategoriesController < ApplicationController
 
   private
   def category_params
-    params.require(:category).permit :name, :description
+    params.require(:category).permit :name, :description, :photo
   end
 
   def load_category
