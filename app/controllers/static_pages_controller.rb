@@ -83,7 +83,7 @@ class StaticPagesController < ApplicationController
 `GET: http://localhost:3000/categories.json?page=3`
 
 **Response**:
-`{"total_pages": 10, "categories": [{"id": 15, "name": "International Mobility Liason"}, {"id": 14, "name": "Regional Branding Representative"}]}`
+`{"categories": [{"id": 15, "name": "Internal Interactions Supervisor", "photo": "https://herokuupload.s3.amazonaws.com/uploads/category/photo/15/upload.png","learned_words": 0}, {"id": 14, "name": "Senior Metrics Director", "photo": "https://herokuupload.s3.amazonaws.com/uploads/category/photo/14/upload.png", "learned_words": 0}], "total_pages": 2}`
 
 ## **Create lesson**
 **URL**: [http://localhost:3000/categories/1/lessons.json](http://localhost:3000/categories/1/lessons.json)

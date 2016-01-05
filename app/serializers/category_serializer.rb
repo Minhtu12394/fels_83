@@ -1,5 +1,5 @@
 class CategorySerializer < ActiveModel::Serializer
-  attributes :id, :name, :photo
+  attributes :id, :name, :photo, :learned_words
 
   private
   def photo
@@ -12,5 +12,9 @@ class CategorySerializer < ActiveModel::Serializer
     else
       ""
     end
+  end
+
+  def learned_words
+    object.words.learned(current_user.id).size
   end
 end
