@@ -14,6 +14,7 @@ class WordsController < ApplicationController
       end
       @words = @words.paginate page: params[:page], per_page: (params[:per_page] || 10)
       format.html
+      format.js
       format.json do
         render json: @words, meta: @words.total_pages, meta_key: "total_pages", status: :ok
       end

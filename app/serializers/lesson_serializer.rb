@@ -4,7 +4,8 @@ class LessonSerializer < ActiveModel::Serializer
   private
   def words
     object.results.map do |result|
-      WordSerializer.new result.word, scope: scope, root: false, result: result
+      WordLessonSerializer.new result.word, scope: scope, root: false,
+        result: result
     end
   end
 
