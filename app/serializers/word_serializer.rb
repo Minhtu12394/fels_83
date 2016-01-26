@@ -1,9 +1,5 @@
 class WordSerializer < ActiveModel::Serializer
-  attributes :id, :content, :result_id
+  attributes :id, :content
 
   has_many :answers
-
-  def result_id
-    @options[:result].id
-  end
 end
