@@ -30,11 +30,11 @@ class UsersController < ApplicationController
       @user = User.new user_params
       if @user.save
         make_activity t(:signup), nil, @user
-
+        log_in @user
+        make_activity t(:login)
         format.html{redirect_to root_url}
         format.json do
-          render json: {message: t("message.signup_success")},
-            status: :ok
+          render json: @user, status: :ok
         end
       else
         format.html do
