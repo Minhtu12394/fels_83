@@ -1,5 +1,6 @@
 class Lesson < ActiveRecord::Base
   include Rails.application.routes.url_helpers
+  include LessonsHelper
 
   belongs_to :category
   belongs_to :user
@@ -11,7 +12,9 @@ class Lesson < ActiveRecord::Base
   before_create :create_words
 
   def base_resource
-    "\##{self.id},#{lesson_path self}|#{self.category.base_resource}"
+    text_show = "##{id}"
+    text_show << " (" << rate_result_lesson(self) << ")" if learned?
+    "#{text_show},#{lesson_path self}|#{self.category.base_resource}"
   end
 
   private
