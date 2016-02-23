@@ -37,7 +37,7 @@ class StaticPagesController < ApplicationController
 `POST: {"user": {"name": "Example User", "email": "email@example.com", "password": "123456", "password_confirmation": "123456"}}`
 
 **Response**:
-`{"message": "Sign up success"}`
+`{"user": {"id": 1, "name": "Nguyen Tien Manh", "email":"example@railstutorial.org", "avatar": "http://localhost:3000/uploads/user/avatar/1/Screenshot_from_2015-12-14_14_47_00.png", "admin": true, "auth_token": "E6nAVPWqAsMH0hvTquTipg", "created_at": "2015-12-11T03:30:31.000Z", "updated_at": "2015-12-11T04:09:51.000Z", "activities": [{"id":1, "content": "Logout", "created_at": "2015-12-11T03:37:06.000Z"}, {"id": 2, "content": "Login", "created_at": "2015-12-11T03:37:08.000Z"}]}}`
 
 ## **Sign in**
 
