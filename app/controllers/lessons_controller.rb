@@ -39,7 +39,7 @@ class LessonsController < ApplicationController
       if @lesson && @lesson.update_attributes(lesson_params)
         make_activity t(:finish_lesson), @lesson
 
-        format.html{flash[:success] = t "message.update_success"}
+        flash[:success] = t "message.update_success" if request.format.html?
         format.json{render json: @lesson, status: :ok}
       else
         if @lesson.present?
@@ -47,7 +47,7 @@ class LessonsController < ApplicationController
         else
           failed_message = t "message.update_failed"
         end
-        format.html{flash[:danger] = failed_message}
+        flash[:danger] = failed_message  if request.format.html?
         format.json do
           render json: {message: failed_message}, status: :bad_request
         end
