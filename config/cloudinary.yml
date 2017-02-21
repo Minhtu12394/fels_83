@@ -1,0 +1,18 @@
+development:
+  cloud_name: "hpupvh3dl"
+  api_key: "223524325211841"
+  api_secret: "qo48cuohYSlwFOXhyw2ymhhIh3A"
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: "hpupvh3dl"
+  api_key: "223524325211841"
+  api_secret: "qo48cuohYSlwFOXhyw2ymhhIh3A"
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: "hpupvh3dl"
+  api_key: "223524325211841"
+  api_secret: "qo48cuohYSlwFOXhyw2ymhhIh3A"
+  enhance_image_tag: true
+  static_image_support: false

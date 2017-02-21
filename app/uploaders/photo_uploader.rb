@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class PhotoUploader < CarrierWave::Uploader::Base
-
+  include Cloudinary::CarrierWave
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
@@ -22,6 +22,16 @@ class PhotoUploader < CarrierWave::Uploader::Base
   #
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
+  process convert: "png"
+  process tags: "photo"
+
+  version :standard do
+    process resize_to_fill: [150, 150, :north]
+  end
+
+  version :thumbnail do
+    resize_to_fit 50, 50
+  end
 
   # Process files as they are uploaded:
   # process :scale => [200, 300]

@@ -21,6 +21,7 @@ gem "carrierwave"
 gem "mini_magick"
 gem "fog"
 gem "dotenv-rails"
+gem "cloudinary"
 
 group :development, :test do
   gem "sqlite3"
