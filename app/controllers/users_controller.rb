@@ -6,8 +6,16 @@ class UsersController < ApplicationController
   before_action :verify_auth_token!, except: [:new, :create], if: :json_request?
 
   def index
-    @users = User.activated.order(created_at: :desc)
-      .paginate page: params[:page], per_page: 6
+    if params[:q]
+      @users = User.activated.search(params[:q]).order(created_at: :desc)
+        .paginate page: params[:page], per_page: 6
+      respond_to do |format|
+        format.json {render json: @users, only: [:id, :name]}
+      end
+    else
+      @users = User.activated.order(created_at: :desc)
+        .paginate page: params[:page], per_page: 6
+    end
   end
 
   def new

@@ -128,4 +128,10 @@ class User < ActiveRecord::Base
       break random_token unless User.exists?(auth_token: random_token)
     end
   end
+
+  class << self
+    def search q
+      where("name LIKE ? or email LIKE ?", "%#{q}%", "%#{q}%")
+    end
+  end
 end

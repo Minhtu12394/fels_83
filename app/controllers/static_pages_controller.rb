@@ -147,6 +147,21 @@ class StaticPagesController < ApplicationController
 **Response**:
 `{"user": {"id": 1, "name": "Nguyen Tien Manh", "email": "example@railstutorial.org", "avatar": "http://localhost:3000/uploads/user/avatar/1/Screenshot_from_2015-12-14_14_47_00.png", "admin": true, "created_at": "2015-12-11T03:30:31.000Z", "updated_at": "2015-12-11T04:09:51.000Z", "learned_words": 1, "activities": [{"id": 1, "content": "Logout", "created_at": "2015-12-11T03:37:06.000Z"}, {"id": 2, "content": "Login", "created_at": "2015-12-11T03:37:08.000Z"}]}}`
 
+## **Search user by name or email**
+
+**URL**: [http://localhost:3000/users.json?q=t](http://localhost:3000/users.json?q=t)
+
+**Method**: **GET**
+
+**Param request**:
+`- auth_token`, type: string, presence: true
+`- q`, type: string
+`- page`, type: integer, numericality: {greater&#95;than: 0}, optional
+`- per_page`, type: integer, optional, default: 10
+
+**Response**:
+`{"users": [{"id": 100, "name": "Photebe Hauck DVM"}]}`
+
 ## **Update profile**
 
 **URL**: [http://localhost:3000/users/1.json](http://localhost:3000/users/1.json)
