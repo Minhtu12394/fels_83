@@ -23,6 +23,7 @@ gem "fog"
 gem "dotenv-rails"
 
 group :development, :test do
+  gem "sqlite3"
   gem "mysql2", "~> 0.3.20"
   gem "byebug"
   gem "better_errors"

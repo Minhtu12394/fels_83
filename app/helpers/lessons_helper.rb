@@ -10,6 +10,6 @@ module LessonsHelper
   end
 
   def rate_result_lesson lesson
-    "#{[lesson.answers.correct.size, lesson.answers.size].join("/")} #{t("words")}"
+    "#{[lesson.answers.correct.size, lesson.answers.size].join("/")} #{I18n.t("words")}"
   end
 end

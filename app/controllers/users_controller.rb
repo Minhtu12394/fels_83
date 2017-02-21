@@ -1,12 +1,21 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, except: [:new, :create]
+  before_action :logged_in_user, except: [:new, :create], unless: :json_request?
   before_action :correct_user, only: [:edit, :update]
   before_action :find_user, only: [:show, :edit, :update]
   before_action :not_logged_in, only: [:new, :create]
+  before_action :verify_auth_token!, except: [:new, :create], if: :json_request?
 
   def index
-    @users = User.activated.order(created_at: :desc)
-      .paginate page: params[:page], per_page: 6
+    if params[:q]
+      @users = User.activated.search(params[:q]).order(created_at: :desc)
+        .paginate page: params[:page], per_page: 6
+      respond_to do |format|
+        format.json {render json: @users, only: [:id, :name]}
+      end
+    else
+      @users = User.activated.order(created_at: :desc)
+        .paginate page: params[:page], per_page: 6
+    end
   end
 
   def new
@@ -29,11 +38,11 @@ class UsersController < ApplicationController
       @user = User.new user_params
       if @user.save
         make_activity t(:signup), nil, @user
-
+        log_in @user
+        make_activity t(:login)
         format.html{redirect_to root_url}
         format.json do
-          render json: {message: t("message.signup_success")},
-            status: :ok
+          render json: @user, status: :ok
         end
       else
         format.html do
@@ -52,7 +61,8 @@ class UsersController < ApplicationController
 
   def update
     respond_to do |format|
-      if @user.update_attributes update_params
+      decode_avatar_data if json_request?
+      if @user.update_attributes user_params
         success_message = t "message.profile_updated"
         make_activity t(:update_profile)
 
@@ -77,13 +87,8 @@ class UsersController < ApplicationController
   end
 
   private
-  def update_params
-    params.require(:user).permit :name, :password, :avatar,
-      :password_confirmation
-  end
-
   def user_params
-    params.require(:user).permit :name, :email, :password,
+    params.require(:user).permit :name, :email, :avatar, :password,
       :password_confirmation
   end
 
@@ -102,5 +107,14 @@ class UsersController < ApplicationController
         end
       end
     end
+  end
+
+  def decode_avatar_data
+    return if params[:user][:avatar].nil?
+    data = StringIO.new(Base64.decode64(params[:user][:avatar]))
+    data.class.class_eval {attr_accessor :original_filename, :content_type}
+    data.original_filename = "upload.png"
+    data.content_type = "image/png"
+    params[:user][:avatar] = data
   end
 end

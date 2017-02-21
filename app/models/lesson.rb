@@ -11,7 +11,9 @@ class Lesson < ActiveRecord::Base
   before_create :create_words
 
   def base_resource
-    "\##{self.id},#{lesson_path self}|#{self.category.base_resource}"
+    text_show = "lesson \"#{category.name}\""
+    text_show = "#{answers.correct.size} words in #{text_show}" if learned?
+    "#{text_show},#{lesson_path self}|#{category.base_resource}"
   end
 
   private

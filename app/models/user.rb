@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   validates :password, length: {minimum: 6}, presence: true, allow_nil: true
   validate  :avatar_size
 
-  before_create :create_activation_digest
+  before_create :create_activation_digest, :generate_auth_token
 
   has_secure_password
 
@@ -101,6 +101,15 @@ class User < ActiveRecord::Base
     "#{id} #{name}".parameterize
   end
 
+  def ensure_auth_token!
+    return if self.auth_token.present?
+    self.auth_token = loop do
+      random_token = SecureRandom.urlsafe_base64(nil, false)
+      break random_token unless User.exists?(auth_token: random_token)
+    end
+    self.save
+  end
+
   private
   def create_activation_digest
     self.activation_token = User.new_token
@@ -110,6 +119,19 @@ class User < ActiveRecord::Base
   def avatar_size
     if avatar.size > 5.megabytes
       errors.add(:avatar, I18n.t("should_be_less_5_MB"))
+    end
+  end
+
+  def generate_auth_token
+    self.auth_token = loop do
+      random_token = SecureRandom.urlsafe_base64(nil, false)
+      break random_token unless User.exists?(auth_token: random_token)
+    end
+  end
+
+  class << self
+    def search q
+      where("name LIKE ? or email LIKE ?", "%#{q}%", "%#{q}%")
     end
   end
 end

@@ -6,7 +6,7 @@ module ActivitiesHelper
       "<a href='#{url}'>#{content}</a>"
     if resources.size > 1
       next_object = activity_link_to resources[1..-1].join("|"), type
-      activity_text = "#{activity_text} #{I18n.t :of} #{next_object}"
+      activity_text = "#{activity_text} #{I18n.t :in} #{next_object}"
     end
     activity_text
   end

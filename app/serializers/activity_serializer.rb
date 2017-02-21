@@ -3,6 +3,7 @@ class ActivitySerializer < ActiveModel::Serializer
 
   attributes :id, :content, :created_at
 
+  private
   def content
     content = object.behavior
     if object.object.present?

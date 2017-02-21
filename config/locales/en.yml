@@ -59,7 +59,7 @@ en:
   at: "at"
   logout: "Logout"
   start_lesson: "Start lesson"
-  finish_lesson: "Finish lesson"
+  finish_lesson: Learned
   destroy_user: "Destroy user"
   make_reset_password: "Make reset password"
   finish_reset_password: "finish reset password"
@@ -89,7 +89,7 @@ en:
   update_your_profile: "Update your profile"
   you: "You"
   lesson: "Lesson"
-  of: "of"
+  in: "in"
   start_new_lesson: "Start New Lesson"
   category: "Category"
   total_word: "Total word"

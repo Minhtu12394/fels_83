@@ -1,8 +1,14 @@
 class LessonSerializer < ActiveModel::Serializer
-  attributes :id, :name
+  attributes :id, :name, :words
 
-  has_many :words
-  
+  private
+  def words
+    object.results.map do |result|
+      WordLessonSerializer.new result.word, scope: scope, root: false,
+        result: result
+    end
+  end
+
   def name
     "##{id}"
   end

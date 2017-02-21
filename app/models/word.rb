@@ -11,7 +11,7 @@ class Word < ActiveRecord::Base
     is_correct = '1' and id in (select answer_id from results where lesson_id in (select id from
       lessons where user_id = #{user_id})))"}
 
-  validates :content, presence: true, length: {minimum: 3}
+  validates :content, presence: true
   before_save :must_be_a_answer_correct
 
   def base_resource
