@@ -51,7 +51,7 @@ class StaticPagesController < ApplicationController
 `- session[remember_me]`, type: integer(1 is remember, 0 is forget)
 
 **Request example**
-`POST: {"session": {"email": "email@example.com", "password": "123456", "remember_me": "1"}`
+`POST: {"session": {"email": "email@example.com", "password": "123456", "remember_me": "1"}}`
 
 
 **Response**:
@@ -112,7 +112,7 @@ class StaticPagesController < ApplicationController
 `- auth_token`, type: string, presence: true
 
 **Request example**
-`PATCH: {"lesson": {"learned": "true", "results_attributes": {"0": {"answer_id": "19", "id": "1"}, "1": {"answer_id": "118", "id": "2"}, "2": {"answer_id": "54", "id": "3"}, "3": {"answer_id": "48", "id": "4"}, "4": {"answer_id": "109", "id": "5"}, "5": {"answer_id": "8", "id": "6"}, "6": {"id": "7"}, "7": {"id": "8"}, "8": {"id": "9"}, "9": {"id": "10"}, "10": {"id": "11"}, "11": {"id": "12"}, "12": {"id": "13"}, "13": {"id": "14"}, "14": {"id": "15"}, "15": {"id": "16"}, "16": {"id": "17"}, "17": {"id": "18"}, "18": {"id": "19"}, "19": {"id": "20"}}}`
+`PATCH: {"lesson": {"learned": "true", "results_attributes": {"0": {"answer_id": "19", "id": "1"}, "1": {"answer_id": "118", "id": "2"}, "2": {"answer_id": "54", "id": "3"}, "3": {"answer_id": "48", "id": "4"}, "4": {"answer_id": "109", "id": "5"}, "5": {"answer_id": "8", "id": "6"}, "6": {"id": "7"}, "7": {"id": "8"}, "8": {"id": "9"}, "9": {"id": "10"}, "10": {"id": "11"}, "11": {"id": "12"}, "12": {"id": "13"}, "13": {"id": "14"}, "14": {"id": "15"}, "15": {"id": "16"}, "16": {"id": "17"}, "17": {"id": "18"}, "18": {"id": "19"}, "19": {"id": "20"}}}}`
 
 **Response**:
 `{"lesson": {"id": 3, "name": "#3", "words": [{"id": 20, "content": "v922p", "answers": [{"id": 77, "content": "dck8v"}, {"id": 78, "content": "mm9hf"}, {"id": 79, "content": "mcmwn"}, {"id": 80, "content": "lopus"}]}]}}`
