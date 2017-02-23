@@ -32,12 +32,13 @@ class StaticPagesController < ApplicationController
 `- user[email]`, type: string, presence: true, length: {maximum: 255}
 `- user[password]`, type: string, length: {minimum: 6}, presence: true
 `- user[password_confirmation]`, type: string
+`- user[avatar]`, type: base64 data
 
 **Request example**
-`POST: {"user": {"name": "Example User", "email": "email@example.com", "password": "123456", "password_confirmation": "123456"}}`
+`POST: {"user": {"name": "Example User", "email": "email@example.com", "avatar": "http://res.cloudinary.com/hpupvh3dl/image/upload/te2l0alt57s4q53teax4.png", "password": "123456", "password_confirmation": "123456"}}`
 
 **Response**:
-`{"user": {"id": 1, "name": "Nguyen Tien Manh", "email":"example@railstutorial.org", "avatar": "http://localhost:3000/uploads/user/avatar/1/Screenshot_from_2015-12-14_14_47_00.png", "admin": true, "auth_token": "E6nAVPWqAsMH0hvTquTipg", "created_at": "2015-12-11T03:30:31.000Z", "updated_at": "2015-12-11T04:09:51.000Z", "activities": [{"id":1, "content": "Logout", "created_at": "2015-12-11T03:37:06.000Z"}, {"id": 2, "content": "Login", "created_at": "2015-12-11T03:37:08.000Z"}]}}`
+`{"user": {"id": 119, "name": "Example User", "email": "email123@example.com", "admin": false, "created_at": "2017-02-23T07:16:19.800Z", "updated_at": "2017-02-23T07:18:55.089Z", "avatar": "http://localhost:3000/ttp://res.cloudinary.com/hpupvh3dl/image/upload/te2l0alt57s4q53teax4.png", "auth_token": "qFatHvr1fnyap_X2vqMsag", "learned_words": 0, "activities": [{"id": 52, "content": "Sign up", "created_at": "2017-02-23T07:16:20.326Z"}, {"id": 53, "content": "Login", "created_at": "2017-02-23T07:16:20.472Z"}]}}`
 
 ## **Sign in**
 
@@ -165,7 +166,7 @@ class StaticPagesController < ApplicationController
 
 ## **Update profile**
 
-**URL**: [http://localhost:3000/users/1.json](http://localhost:3000/users/1.json)
+**URL**: [http://localhost:3000/users/119.json](http://localhost:3000/users/119.json)
 
 **Method**: **PATCH**
 
@@ -178,10 +179,10 @@ class StaticPagesController < ApplicationController
 `- auth_token`, type: string, presence: true
 
 **Request example**
-`PATCH: {"user": {"name": "Example User", "email": "email@example.com", "password": "123456", "password_confirmation": "123456"}}`
+`PATCH: {"user": {"name": "Example User", "email": "email@example.com", "avatar": "http://res.cloudinary.com/hpupvh3dl/image/upload/mda41jwbel7iypsqrb25.png", "password": "123456", "password_confirmation": "123456"}}`
 
 **Response**:
-`{"user": {"id": 1, "name": "Nguyen Tien Manh", "email": "example@railstutorial.org", "admin": true, "created_at": "2015-12-11T03:30:31.000Z", "updated_at": "2015-12-11T04:09:51.000Z", "activities": [{"id": 1, "content": "Logout", "created_at": "2015-12-11T03:37:06.000Z"}, {"id": 2, "content": "Login", "created_at": "2015-12-11T03:37:08.000Z"}]}}`
+`{"user": {"id": 119, "name": "Example User", "email": "email123@example.com", "admin": false, "created_at": "2017-02-23T07:16:19.800Z", "updated_at": "2017-02-23T07:18:55.089Z", "avatar": "http://localhost:3000/ttp://res.cloudinary.com/hpupvh3dl/image/upload/mda41jwbel7iypsqrb25.png", "auth_token": "qFatHvr1fnyap_X2vqMsag", "learned_words": 0, "activities": [{"id": 52, "content": "Sign up", "created_at": "2017-02-23T07:16:20.326Z"}, {"id": 53, "content": "Login", "created_at": "2017-02-23T07:16:20.472Z"}, {"id": 54, "content": "update profile", "created_at": "2017-02-23T07:19:29.208Z"}]}}`
 
 ## **Make follow**
 
