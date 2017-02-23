@@ -35,6 +35,7 @@ class UsersController < ApplicationController
 
   def create
     respond_to do |format|
+      decode_avatar_data if json_request?
       @user = User.new user_params
       if @user.save
         make_activity t(:signup), nil, @user
@@ -111,7 +112,7 @@ class UsersController < ApplicationController
 
   def decode_avatar_data
     return if params[:user][:avatar].nil?
-    data = StringIO.new(Base64.decode64(params[:user][:avatar]))
+    data = StringIO.new(Base64.decode64((params[:user][:avatar]).to_s))
     data.class.class_eval {attr_accessor :original_filename, :content_type}
     data.original_filename = "upload.png"
     data.content_type = "image/png"
